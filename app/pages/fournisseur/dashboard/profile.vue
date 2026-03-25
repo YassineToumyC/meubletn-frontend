@@ -130,6 +130,49 @@
       </div>
 
     </div>
+
+    <!-- Sessions actives -->
+    <div class="card card--full">
+      <div class="card-head">
+        <div class="card-icon card-icon--blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div style="flex:1">
+          <h2 class="card-title">Sessions actives</h2>
+          <p class="card-sub">Appareils connectés à votre compte</p>
+        </div>
+        <button class="revoke-all-btn" :disabled="revokingAll || sessions.length <= 1" @click="revokeOthers">
+          <span v-if="revokingAll" class="btn-spinner btn-spinner--dark" />
+          {{ revokingAll ? 'Révocation…' : 'Révoquer les autres' }}
+        </button>
+      </div>
+
+      <div v-if="sessionsLoading" class="sessions-loading">Chargement…</div>
+      <div v-else-if="sessions.length === 0" class="sessions-empty">Aucune session active.</div>
+      <ul v-else class="sessions-list">
+        <li v-for="s in sessions" :key="s.id" class="session-item" :class="{ 'session-item--current': s.is_current }">
+          <div class="session-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="session-info">
+            <div class="session-device">
+              {{ parseDevice(s.user_agent) }}
+              <span v-if="s.is_current" class="session-badge">Session actuelle</span>
+            </div>
+            <div class="session-meta">
+              <span v-if="s.ip_address">{{ s.ip_address }}</span>
+              <span v-if="s.ip_address"> · </span>
+              <span>Connecté {{ formatRelative(s.created_at) }}</span>
+              <span v-if="s.last_used_at"> · Utilisé {{ formatRelative(s.last_used_at) }}</span>
+            </div>
+          </div>
+          <button v-if="!s.is_current" class="session-revoke" :disabled="revoking === s.id" @click="revokeSession(s.id)" title="Révoquer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </template>
 
@@ -158,6 +201,7 @@ onMounted(async () => {
       adresse:        profileData.value?.adresse ?? '',
       ville:          profileData.value?.ville ?? '',
     })
+    await loadSessions()
   } catch {}
 })
 
@@ -202,6 +246,69 @@ async function savePassword() {
   } finally {
     passSaving.value = false
   }
+}
+
+// ── Sessions ───────────────────────────────────────────────
+const sessions        = ref<any[]>([])
+const sessionsLoading = ref(false)
+const revoking        = ref<number | null>(null)
+const revokingAll     = ref(false)
+
+async function loadSessions() {
+  sessionsLoading.value = true
+  try {
+    const data = await apiFetch<{ sessions: any[] }>('/dashboard/sessions')
+    sessions.value = data.sessions
+  } catch {} finally {
+    sessionsLoading.value = false
+  }
+}
+
+async function revokeSession(id: number) {
+  revoking.value = id
+  try {
+    await apiFetch(`/dashboard/sessions/${id}`, { method: 'DELETE' })
+    sessions.value = sessions.value.filter(s => s.id !== id)
+  } catch {} finally {
+    revoking.value = null
+  }
+}
+
+async function revokeOthers() {
+  revokingAll.value = true
+  try {
+    await apiFetch('/dashboard/sessions', { method: 'DELETE' })
+    sessions.value = sessions.value.filter(s => s.is_current)
+  } catch {} finally {
+    revokingAll.value = false
+  }
+}
+
+function parseDevice(ua: string | null): string {
+  if (!ua) return 'Appareil inconnu'
+  let browser = 'Navigateur'
+  if (/Edg\//.test(ua))             browser = 'Edge'
+  else if (/Chrome\//.test(ua))     browser = 'Chrome'
+  else if (/Firefox\//.test(ua))    browser = 'Firefox'
+  else if (/Safari\//.test(ua))     browser = 'Safari'
+  else if (/Opera|OPR\//.test(ua))  browser = 'Opera'
+  let os = ''
+  if (/Windows/.test(ua))           os = 'Windows'
+  else if (/Mac OS X/.test(ua))     os = 'macOS'
+  else if (/iPhone|iPad/.test(ua))  os = 'iOS'
+  else if (/Android/.test(ua))      os = 'Android'
+  else if (/Linux/.test(ua))        os = 'Linux'
+  return os ? `${browser} sur ${os}` : browser
+}
+
+function formatRelative(date: string | null): string {
+  if (!date) return '—'
+  const d    = new Date(date)
+  const diff = Math.floor((Date.now() - d.getTime()) / 1000)
+  if (diff < 60)   return "à l'instant"
+  if (diff < 3600) return `il y a ${Math.floor(diff / 60)} min`
+  if (diff < 86400) return `il y a ${Math.floor(diff / 3600)}h`
+  return `il y a ${Math.floor(diff / 86400)}j`
 }
 </script>
 
@@ -343,4 +450,43 @@ async function savePassword() {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Sessions */
+.card--full { grid-column: 1 / -1; }
+.revoke-all-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 8px;
+  border: 1.5px solid #e5e7eb; background: #fff;
+  font-size: 12px; font-weight: 600; color: #374151;
+  cursor: pointer; transition: background 0.15s;
+}
+.revoke-all-btn:hover:not(:disabled) { background: #f9fafb; border-color: #d1d5db; }
+.revoke-all-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.sessions-loading, .sessions-empty { font-size: 13px; color: #9ca3af; padding: 12px 0; }
+.sessions-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+.session-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid #f3f4f6;
+}
+.session-item:last-child { border-bottom: none; }
+.session-item--current { background: transparent; }
+.session-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: #eff6ff; color: #003888;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.session-item--current .session-icon { background: #eff6ff; }
+.session-info { flex: 1; min-width: 0; }
+.session-device { font-size: 13.5px; font-weight: 600; color: #111827; display: flex; align-items: center; gap: 8px; }
+.session-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: #eff6ff; color: #003888; }
+.session-meta { font-size: 12px; color: #6b7280; margin-top: 2px; }
+.session-revoke {
+  width: 28px; height: 28px; border-radius: 7px;
+  border: 1px solid #e5e7eb; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  color: #9ca3af; cursor: pointer; flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.session-revoke:hover { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
+.btn-spinner--dark { border: 2px solid rgba(0,0,0,0.15); border-top-color: #374151; }
 </style>
