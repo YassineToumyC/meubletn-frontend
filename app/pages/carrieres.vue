@@ -62,7 +62,7 @@ const jobs = [
 </script>
 
 <style scoped>
-.static-page { background: #eeeeef; min-height: 100vh; }
+.static-page { background: #fff; min-height: 100vh; }
 .hero { padding: 48px 0; }
 .hero--green { background: linear-gradient(135deg, #276749 0%, #134030 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

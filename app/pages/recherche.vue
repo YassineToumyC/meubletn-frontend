@@ -87,7 +87,7 @@ const popularTerms = ['Canapé', 'Lit', 'Bureau', 'Table', 'Chaise', 'Armoire', 
 </script>
 
 <style scoped>
-.search-page { background: #eeeeef; min-height: 100vh; padding: 32px 0 64px; }
+.search-page { background: #fff; min-height: 100vh; padding: 32px 0 64px; }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 632px) { .wrap { padding: 0 24px; } }
 @media (min-width: 984px) { .wrap { padding: 0 48px; } }

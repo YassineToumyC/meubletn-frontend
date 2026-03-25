@@ -115,7 +115,7 @@ const orders = [
 </script>
 
 <style scoped>
-.account-page { background: #eeeeef; min-height: 100vh; padding: 32px 0 64px; }
+.account-page { background: #fff; min-height: 100vh; padding: 32px 0 64px; }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 632px) { .wrap { padding: 0 24px; } }
 @media (min-width: 984px) { .wrap { padding: 0 48px; } }
@@ -125,13 +125,13 @@ const orders = [
 
 .account-nav { background: #fff; border-radius: 10px; padding: 24px; align-self: start; }
 .account-user { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eeeeef; }
-.user-avatar { width: 44px; height: 44px; border-radius: 50%; background: #db3a1b; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+.user-avatar { width: 44px; height: 44px; border-radius: 50%; background: #E1004E; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
 .user-name { font-size: 14px; font-weight: 600; color: #2f3133; }
 .user-email { font-size: 12px; color: #717678; }
 .nav-links { display: flex; flex-direction: column; gap: 2px; }
 .nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-size: 14px; color: #47494c; text-decoration: none; border-radius: 6px; transition: background 0.15s; }
 .nav-link:hover { background: #eeeeef; }
-.nav-link--active { background: #fff0ed; color: #db3a1b; font-weight: 600; }
+.nav-link--active { background: #fff0ed; color: #E1004E; font-weight: 600; }
 .nav-link--logout { color: #717678; margin-top: 12px; }
 
 .page-title { font-size: 24px; font-weight: 700; color: #2f3133; margin-bottom: 24px; }

@@ -65,7 +65,7 @@ const stores = [
 </script>
 
 <style scoped>
-.info-page { background: #eeeeef; min-height: 100vh; }
+.info-page { background: #fff; min-height: 100vh; }
 .info-hero { padding: 48px 0; }
 .info-hero--warm { background: linear-gradient(135deg, #92400e 0%, #5a2808 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

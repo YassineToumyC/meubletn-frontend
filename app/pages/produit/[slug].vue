@@ -277,7 +277,7 @@ useHead(() => ({ title: `${product.value?.name ?? 'Produit'} | meubletn` }))
 </script>
 
 <style scoped>
-.prod-page { background: #eeeeef; padding-bottom: 64px; }
+.prod-page { background: #fff; padding-bottom: 64px; }
 
 .wrap {
   max-width: 1600px;

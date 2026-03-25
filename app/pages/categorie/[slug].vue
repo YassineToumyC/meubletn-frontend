@@ -151,7 +151,7 @@ watch(slug, () => {
 </script>
 
 <style scoped>
-.cat-page { background: #f9fafb; min-height: 100vh; padding-bottom: 64px; }
+.cat-page { background: #fff; min-height: 100vh; padding-bottom: 64px; }
 
 .wrap {
   max-width: 1400px;

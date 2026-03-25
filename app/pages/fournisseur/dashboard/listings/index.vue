@@ -48,7 +48,7 @@
     <!-- Empty state -->
     <div v-else-if="filtered.length === 0" class="empty-state">
       <div class="empty-icon-wrap">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#db3a1b" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003888" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       </div>
       <h3>{{ isFiltering ? 'Aucun résultat' : 'Pas encore d\'annonces' }}</h3>
       <p>{{ isFiltering ? 'Essayez de modifier vos filtres.' : 'Publiez votre première annonce dès maintenant.' }}</p>
@@ -220,12 +220,12 @@ async function doDelete() {
 .page-sub strong { color: #111827; }
 .new-btn {
   display: inline-flex; align-items: center; gap: 6px;
-  background: #db3a1b; color: #fff; padding: 9px 18px;
+  background: #003888; color: #fff; padding: 9px 18px;
   border-radius: 9px; font-size: 13px; font-weight: 600;
   text-decoration: none; white-space: nowrap;
   transition: background 0.15s, transform 0.15s;
 }
-.new-btn:hover { background: #b83217; transform: translateY(-1px); }
+.new-btn:hover { background: #002d6e; transform: translateY(-1px); }
 .new-btn--sm { padding: 8px 14px; }
 
 /* Filters */
@@ -242,22 +242,22 @@ async function doDelete() {
   padding: 0 12px 0 34px; font-size: 13px; color: #111827;
   outline: none; transition: border-color 0.15s;
 }
-.search-input:focus { border-color: #db3a1b; }
+.search-input:focus { border-color: #003888; }
 .filter-select {
   height: 38px; border: 1.5px solid #e5e7eb; border-radius: 8px;
   padding: 0 10px; font-size: 13px; background: #fff;
   color: #374151; outline: none; cursor: pointer; transition: border-color 0.15s;
 }
-.filter-select:focus { border-color: #db3a1b; }
+.filter-select:focus { border-color: #003888; }
 .reset-btn {
   display: flex; align-items: center; gap: 5px;
   height: 38px; padding: 0 14px;
-  background: #fef2f2; color: #db3a1b;
-  border: 1.5px solid #fecaca; border-radius: 8px;
+  background: #e8eef8; color: #003888;
+  border: 1.5px solid #99b5d8; border-radius: 8px;
   font-size: 12px; font-weight: 600; cursor: pointer;
   white-space: nowrap; transition: background 0.15s;
 }
-.reset-btn:hover { background: #fee2e2; }
+.reset-btn:hover { background: #cdd9f0; }
 
 /* Skeleton */
 .skeleton-table { display: flex; flex-direction: column; gap: 8px; }
@@ -277,7 +277,7 @@ async function doDelete() {
 }
 .empty-icon-wrap {
   width: 64px; height: 64px; border-radius: 16px;
-  background: #fef2f2; display: flex; align-items: center; justify-content: center;
+  background: #e8eef8; display: flex; align-items: center; justify-content: center;
   margin-bottom: 4px;
 }
 .empty-state h3 { font-size: 16px; font-weight: 700; color: #111827; margin: 0; }
@@ -322,7 +322,7 @@ async function doDelete() {
 
 .td-title { display: block; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
 .td-sub   { display: block; font-size: 11px; color: #9ca3af; margin-top: 2px; }
-.td-price { font-weight: 700; color: #db3a1b; white-space: nowrap; }
+.td-price { font-weight: 700; color: #003888; white-space: nowrap; }
 .td-muted { color: #9ca3af; }
 .td-views { font-variant-numeric: tabular-nums; }
 
@@ -362,7 +362,7 @@ async function doDelete() {
   background: none; border: none; color: #9ca3af; cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
-.action-del:hover { background: #fff1f2; color: #e11d48; }
+.action-del:hover { background: #e8eef8; color: #e11d48; }
 
 /* Modal */
 .modal-backdrop {
@@ -378,7 +378,7 @@ async function doDelete() {
 }
 .modal-icon-wrap {
   width: 56px; height: 56px; border-radius: 14px;
-  background: #fff1f2; display: flex; align-items: center; justify-content: center;
+  background: #e8eef8; display: flex; align-items: center; justify-content: center;
   margin-bottom: 4px;
 }
 .modal-title { font-size: 18px; font-weight: 700; color: #111827; margin: 0; }

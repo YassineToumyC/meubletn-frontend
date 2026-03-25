@@ -266,7 +266,7 @@ useHead(() => ({
   flex-wrap: wrap;
 }
 .breadcrumb a { color: #6b7280; text-decoration: none; }
-.breadcrumb a:hover { color: #db3a1b; }
+.breadcrumb a:hover { color: #E1004E; }
 .sep { color: #d1d5db; }
 .breadcrumb-current { color: #374151; font-weight: 500; }
 
@@ -334,7 +334,7 @@ useHead(() => ({
   transition: border-color 0.15s;
   flex-shrink: 0;
 }
-.thumb-btn--active { border-color: #db3a1b; }
+.thumb-btn--active { border-color: #E1004E; }
 .thumb-img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Info panel */
@@ -353,7 +353,7 @@ useHead(() => ({
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #db3a1b;
+  color: #E1004E;
   margin: 0;
 }
 .info-title {
@@ -369,7 +369,7 @@ useHead(() => ({
 .info-price {
   font-size: 28px;
   font-weight: 800;
-  color: #db3a1b;
+  color: #E1004E;
 }
 
 /* Specs */
@@ -414,8 +414,8 @@ useHead(() => ({
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #fef0ec;
-  color: #db3a1b;
+  background: #fff0f6;
+  color: #E1004E;
   font-size: 18px;
   font-weight: 700;
   display: flex;
@@ -456,7 +456,7 @@ useHead(() => ({
   display: flex;
   padding: 4px;
 }
-.qty-btn:hover { color: #db3a1b; }
+.qty-btn:hover { color: #E1004E; }
 .qty-val {
   font-size: 16px;
   font-weight: 600;
@@ -471,7 +471,7 @@ useHead(() => ({
   gap: 8px;
   flex: 1;
   height: 48px;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -481,7 +481,7 @@ useHead(() => ({
   transition: background 0.15s;
   white-space: nowrap;
 }
-.btn-cart:hover { background: #b83217; }
+.btn-cart:hover { background: #c5003f; }
 .btn-wish {
   width: 48px;
   height: 48px;
@@ -496,8 +496,8 @@ useHead(() => ({
   flex-shrink: 0;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.btn-wish:hover { color: #db3a1b; border-color: #db3a1b; background: #fef2f2; }
-.btn-wish--active { color: #db3a1b; border-color: #db3a1b; background: #fef2f2; }
+.btn-wish:hover { color: #E1004E; border-color: #E1004E; background: #fff0f6; }
+.btn-wish--active { color: #E1004E; border-color: #E1004E; background: #fff0f6; }
 .added-msg {
   display: flex;
   align-items: center;
@@ -564,12 +564,12 @@ useHead(() => ({
   gap: 6px;
   margin-top: 8px;
   padding: 10px 20px;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   border-radius: 6px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
 }
-.btn-back:hover { background: #b83217; }
+.btn-back:hover { background: #c5003f; }
 </style>

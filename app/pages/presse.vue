@@ -47,7 +47,7 @@ const pressItems = [
 </script>
 
 <style scoped>
-.static-page { background: #eeeeef; min-height: 100vh; }
+.static-page { background: #fff; min-height: 100vh; }
 .hero { padding: 48px 0; }
 .hero--dark { background: linear-gradient(135deg, #2f3133 0%, #111 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

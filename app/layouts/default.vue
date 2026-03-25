@@ -89,13 +89,13 @@ const { isLoggedIn } = useAuth()
   position: relative;
 }
 .mbn-item:hover,
-.mbn-item--active { color: #db3a1b; }
+.mbn-item--active { color: #E1004E; }
 .mbn-cart-wrap { position: relative; display: flex; }
 .mbn-badge {
   position: absolute;
   top: -6px;
   right: -8px;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   font-size: 9px;
   font-weight: 700;

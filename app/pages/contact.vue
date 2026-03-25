@@ -96,7 +96,7 @@ const channels = [
 </script>
 
 <style scoped>
-.info-page { background: #eeeeef; min-height: 100vh; }
+.info-page { background: #fff; min-height: 100vh; }
 .info-hero { padding: 48px 0; }
 .info-hero--brand { background: linear-gradient(135deg, #db3a1b 0%, #8b1a07 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

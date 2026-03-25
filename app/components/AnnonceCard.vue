@@ -116,8 +116,8 @@ function formatPrice(price: number): string {
   backdrop-filter: blur(4px);
   z-index: 1;
 }
-.wish-btn:hover { color: #db3a1b; background: #fff; }
-.wish-btn--active { color: #db3a1b; }
+.wish-btn:hover { color: #E1004E; background: #fff; }
+.wish-btn--active { color: #E1004E; }
 
 /* Condition badge */
 .card-condition {
@@ -146,7 +146,7 @@ function formatPrice(price: number): string {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #db3a1b;
+  color: #E1004E;
   margin: 0;
 }
 .card-title {
@@ -187,7 +187,7 @@ function formatPrice(price: number): string {
 .card-price {
   font-size: 16px;
   font-weight: 800;
-  color: #db3a1b;
+  color: #E1004E;
   white-space: nowrap;
 }
 .card-seller {

@@ -181,7 +181,7 @@ const { isFournisseur } = useFournisseurAuth()
 .step-card--locked { opacity: 0.55; }
 .step-number {
   width: 36px; height: 36px; border-radius: 50%;
-  background: #db3a1b; color: #fff;
+  background: #003888; color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-size: 16px; font-weight: 800; flex-shrink: 0;
 }
@@ -216,18 +216,18 @@ const { isFournisseur } = useFournisseurAuth()
   font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
 }
 .bp-icon--green { background: #dcfce7; color: #16a34a; }
-.bp-icon--red   { background: #fee2e2; color: #dc2626; }
+.bp-icon--red   { background: #cdd9f0; color: #dc2626; }
 
 /* CTA */
 .cta-card {
-  background: linear-gradient(135deg, #db3a1b 0%, #ab331a 100%);
+  background: linear-gradient(135deg, #003888 0%, #002d6e 100%);
   border-radius: 14px; padding: 28px 32px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px; flex-wrap: wrap;
 }
 .cta-card h3 { color: #fff; font-size: 18px; font-weight: 700; margin: 0; }
 .cta-btn {
-  background: #fff; color: #db3a1b;
+  background: #fff; color: #003888;
   padding: 11px 24px; border-radius: 8px;
   font-size: 14px; font-weight: 700; text-decoration: none;
   white-space: nowrap; transition: opacity 0.15s;

@@ -74,22 +74,22 @@ const trustBadges = [
   {
     title: 'Livraison gratuite dès 99€',
     desc: 'Livraison à domicile sur toute la Tunisie',
-    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#db3a1b" stroke-width="1.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>',
+    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E1004E" stroke-width="1.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>',
   },
   {
     title: 'Retour sous 30 jours',
     desc: 'Satisfait ou remboursé, sans question',
-    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#db3a1b" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.33"/></svg>',
+    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E1004E" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.33"/></svg>',
   },
   {
     title: 'Paiement 100% sécurisé',
     desc: 'Toutes les transactions sont protégées',
-    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#db3a1b" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E1004E" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
   },
   {
     title: 'Plus de 50 000 produits',
     desc: 'Un large choix pour aménager votre intérieur',
-    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#db3a1b" stroke-width="1.5"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/></svg>',
+    icon: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E1004E" stroke-width="1.5"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/></svg>',
   },
 ]
 
@@ -258,7 +258,7 @@ const footerCols = [
   color: #ffffff;
   transition: background-color 0.15s;
 }
-.social-link:hover { background-color: #db3a1b; }
+.social-link:hover { background-color: #E1004E; }
 .footer-payment {
   display: flex;
   align-items: center;

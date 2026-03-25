@@ -52,7 +52,7 @@ const gridItems = computed(() => {
 </script>
 
 <style scoped>
-.list-page { background: #eeeeef; min-height: 100vh; }
+.list-page { background: #fff; min-height: 100vh; }
 .list-hero { padding: 48px 0; }
 .list-hero--dark { background: linear-gradient(135deg, #2f3133 0%, #111 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

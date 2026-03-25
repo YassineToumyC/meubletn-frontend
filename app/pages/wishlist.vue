@@ -37,7 +37,7 @@ const { items, remove } = useWishlist()
 </script>
 
 <style scoped>
-.wishlist-page { background: #f9fafb; min-height: 100vh; padding: 32px 0 64px; }
+.wishlist-page { background: #fff; min-height: 100vh; padding: 32px 0 64px; }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px) { .wrap { padding: 0 24px; } }
 @media (min-width: 1024px) { .wrap { padding: 0 48px; } }
@@ -60,7 +60,7 @@ const { items, remove } = useWishlist()
 .cta-btn {
   display: inline-flex;
   align-items: center;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   text-decoration: none;
   border-radius: 8px;
@@ -70,7 +70,7 @@ const { items, remove } = useWishlist()
   margin-top: 8px;
   transition: background 0.15s;
 }
-.cta-btn:hover { background: #b83217; }
+.cta-btn:hover { background: #c5003f; }
 
 .wishlist-grid {
   display: grid;
@@ -89,14 +89,14 @@ const { items, remove } = useWishlist()
   gap: 5px;
   width: 100%;
   padding: 8px;
-  background: #fef2f2;
-  color: #db3a1b;
-  border: 1.5px solid #fecaca;
+  background: #fff0f6;
+  color: #E1004E;
+  border: 1.5px solid #fdb8ce;
   border-radius: 8px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s;
 }
-.remove-wish:hover { background: #fee2e2; }
+.remove-wish:hover { background: #ffe0ec; }
 </style>

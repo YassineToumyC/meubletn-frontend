@@ -52,7 +52,7 @@ const steps = [
 </script>
 
 <style scoped>
-.info-page { background: #eeeeef; min-height: 100vh; }
+.info-page { background: #fff; min-height: 100vh; }
 .info-hero { padding: 48px 0; }
 .info-hero--green { background: linear-gradient(135deg, #276749 0%, #134030 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

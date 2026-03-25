@@ -96,7 +96,7 @@ async function submit() {
 <style scoped>
 .auth-page {
   min-height: 100vh;
-  background: #f4f5f7;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

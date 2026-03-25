@@ -222,7 +222,7 @@ async function submit() {
   padding: 10px 14px; font-size: 14px; color: #111827;
   outline: none; background: #fff; transition: border-color 0.15s; font-family: inherit;
 }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: #db3a1b; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: #003888; }
 .field textarea { resize: vertical; }
 .field select:disabled { background: #f9fafb; color: #9ca3af; cursor: not-allowed; }
 .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
@@ -239,7 +239,7 @@ async function submit() {
   align-items: center; justify-content: center; gap: 4px;
   font-size: 11px; color: #9ca3af; transition: border-color 0.15s;
 }
-.img-slot--add:hover { border-color: #db3a1b; color: #db3a1b; }
+.img-slot--add:hover { border-color: #003888; color: #003888; }
 .img-preview { width: 100%; height: 100%; object-fit: cover; }
 .img-remove {
   position: absolute; top: 4px; right: 4px;
@@ -257,12 +257,12 @@ async function submit() {
 .toggle-btn--on  { background: #dcfce7; color: #16a34a; }
 .toggle-btn--off { background: #f3f4f6; color: #6b7280; }
 
-.error-box { margin: 0 28px; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; font-size: 13px; padding: 12px 16px; border-radius: 8px; display: flex; flex-direction: column; gap: 4px; }
+.error-box { margin: 0 28px; background: #e8eef8; border: 1px solid #99b5d8; color: #dc2626; font-size: 13px; padding: 12px 16px; border-radius: 8px; display: flex; flex-direction: column; gap: 4px; }
 
 .form-actions { padding: 20px 28px; display: flex; justify-content: flex-end; gap: 12px; }
 .cancel-btn { padding: 10px 22px; border: 1.5px solid #d1d5db; border-radius: 8px; background: #fff; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: background 0.15s; }
 .cancel-btn:hover { background: #f9fafb; }
-.save-btn { padding: 10px 24px; background: #db3a1b; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
-.save-btn:hover:not(:disabled) { background: #ab331a; }
+.save-btn { padding: 10px 24px; background: #003888; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+.save-btn:hover:not(:disabled) { background: #002d6e; }
 .save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 </style>

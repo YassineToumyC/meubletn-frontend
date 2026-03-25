@@ -143,7 +143,7 @@ watch(sub, () => { searchQ.value = ''; conditionF.value = ''; load(1) })
 </script>
 
 <style scoped>
-.cat-page { background: #f9fafb; min-height: 100vh; padding-bottom: 64px; }
+.cat-page { background: #fff; min-height: 100vh; padding-bottom: 64px; }
 .wrap { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px)  { .wrap { padding: 0 24px; } }
 @media (min-width: 1024px) { .wrap { padding: 0 48px; } }

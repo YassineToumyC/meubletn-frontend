@@ -206,11 +206,11 @@ const formatDate = (d: string) =>
 .page-title { font-size: 22px; font-weight: 700; color: #111827; margin: 0 0 4px; }
 .page-sub { font-size: 14px; color: #6b7280; margin: 0; }
 .new-btn {
-  background: #db3a1b; color: #fff; padding: 10px 20px;
+  background: #003888; color: #fff; padding: 10px 20px;
   border-radius: 8px; font-size: 14px; font-weight: 600;
   border: none; cursor: pointer; white-space: nowrap; transition: background 0.15s;
 }
-.new-btn:hover { background: #ab331a; }
+.new-btn:hover { background: #002d6e; }
 .state-msg { color: #6b7280; font-size: 14px; padding: 40px 0; text-align: center; }
 .empty-state { text-align: center; padding: 60px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; color: #6b7280; }
 .table-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow-x: auto; }
@@ -231,7 +231,7 @@ const formatDate = (d: string) =>
 .action-btn--warn:hover { background: #fef08a; }
 .action-btn--green { background: #dcfce7; color: #16a34a; }
 .action-btn--green:hover { background: #bbf7d0; }
-.action-btn--del   { background: #fff1f2; color: #e11d48; }
+.action-btn--del   { background: #e8eef8; color: #e11d48; }
 .action-btn--del:hover { background: #fecdd3; }
 
 /* Modal */
@@ -244,8 +244,8 @@ const formatDate = (d: string) =>
 .field { display: flex; flex-direction: column; gap: 5px; }
 .field label { font-size: 13px; font-weight: 600; color: #374151; }
 .field input { height: 42px; border: 1.5px solid #d1d5db; border-radius: 8px; padding: 0 14px; font-size: 14px; color: #111827; outline: none; transition: border-color 0.15s; }
-.field input:focus { border-color: #db3a1b; }
-.error-box { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; font-size: 13px; padding: 10px 14px; border-radius: 8px; }
+.field input:focus { border-color: #003888; }
+.error-box { background: #e8eef8; border: 1px solid #99b5d8; color: #dc2626; font-size: 13px; padding: 10px 14px; border-radius: 8px; }
 .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
 .modal-cancel { padding: 9px 20px; border: 1.5px solid #d1d5db; border-radius: 8px; background: #fff; font-size: 14px; font-weight: 600; color: #374151; cursor: pointer; }
 .modal-cancel:hover { background: #f9fafb; }

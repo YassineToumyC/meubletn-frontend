@@ -68,7 +68,7 @@ const trackingSteps = [
 </script>
 
 <style scoped>
-.track-page { background: #eeeeef; min-height: 100vh; padding: 40px 0 64px; }
+.track-page { background: #fff; min-height: 100vh; padding: 40px 0 64px; }
 .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 632px) { .wrap { padding: 0 24px; } }
 .page-title { font-size: 28px; font-weight: 700; color: #2f3133; margin-bottom: 28px; }

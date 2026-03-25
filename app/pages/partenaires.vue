@@ -45,7 +45,7 @@ const brands = [
 </script>
 
 <style scoped>
-.static-page { background: #eeeeef; min-height: 100vh; }
+.static-page { background: #fff; min-height: 100vh; }
 .hero { padding: 48px 0; }
 .hero--blue { background: linear-gradient(135deg, #1a56a0 0%, #0a2d60 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

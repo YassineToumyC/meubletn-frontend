@@ -50,7 +50,7 @@ const gridItems = computed(() => {
 </script>
 
 <style scoped>
-.list-page { background: #eeeeef; min-height: 100vh; }
+.list-page { background: #fff; min-height: 100vh; }
 .list-hero { padding: 48px 0; }
 .list-hero--scandi { background: linear-gradient(135deg, #5a6a8e 0%, #2f3133 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }

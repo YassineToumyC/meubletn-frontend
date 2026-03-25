@@ -51,7 +51,7 @@ useHead({ title: 'Politique de confidentialité | meubletn' })
 </script>
 
 <style scoped>
-.legal-page { background: #eeeeef; min-height: 100vh; }
+.legal-page { background: #fff; min-height: 100vh; }
 .legal-hero { background: #2f3133; padding: 40px 0; }
 .legal-hero h1 { font-size: 30px; font-weight: 700; color: #fff; margin: 0; }
 .wrap { max-width: 900px; margin: 0 auto; padding: 0 16px; }

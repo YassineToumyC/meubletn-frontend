@@ -178,7 +178,7 @@ async function doLogout() {
 .dash-root {
   display: flex;
   min-height: 100vh;
-  background: #f0f2f5;
+  background: #fff;
 }
 .flex-1 { flex: 1; }
 
@@ -220,14 +220,14 @@ async function doLogout() {
 }
 .brand-logo { text-decoration: none; }
 .logo-text { font-size: 22px; font-weight: 800; color: #f3f4f6; letter-spacing: -0.5px; }
-.logo-accent { color: #db3a1b; }
+.logo-accent { color: #003888; }
 .pro-badge {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #db3a1b;
-  background: rgba(219,58,27,0.12);
-  border: 1px solid rgba(219,58,27,0.25);
+  color: #003888;
+  background: rgba(0,56,136,0.12);
+  border: 1px solid rgba(0,56,136,0.25);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -246,7 +246,7 @@ async function doLogout() {
 .user-avatar {
   width: 38px; height: 38px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #db3a1b, #ff6b47);
+  background: linear-gradient(135deg, #003888, #4d88d4);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -278,7 +278,7 @@ async function doLogout() {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.role-dot--owner { background: #db3a1b; }
+.role-dot--owner { background: #003888; }
 .role-dot--agent  { background: #3b82f6; }
 
 /* Nav */
@@ -317,9 +317,9 @@ async function doLogout() {
   border-left-color: #2a2d35;
 }
 .nav-link--active {
-  background: rgba(219,58,27,0.1);
-  color: #fb7c5c;
-  border-left-color: #db3a1b;
+  background: rgba(0,56,136,0.1);
+  color: #6b9fd4;
+  border-left-color: #003888;
   font-weight: 600;
 }
 .nav-link--muted { color: #4b5563; }
@@ -333,8 +333,8 @@ async function doLogout() {
 }
 .nav-badge {
   margin-left: auto;
-  background: rgba(219,58,27,0.15);
-  color: #fb7c5c;
+  background: rgba(0,56,136,0.15);
+  color: #6b9fd4;
   font-size: 10px;
   font-weight: 700;
   padding: 1px 6px;
@@ -451,7 +451,7 @@ async function doLogout() {
   text-decoration: none;
   transition: color 0.15s;
 }
-.bc-home:hover { color: #db3a1b; }
+.bc-home:hover { color: #003888; }
 .bc-sep { color: #d1d5db; font-size: 13px; }
 .bc-current {
   font-size: 14px;
@@ -464,7 +464,7 @@ async function doLogout() {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #db3a1b;
+  background: #003888;
   color: #fff;
   padding: 7px 14px;
   border-radius: 8px;
@@ -474,7 +474,7 @@ async function doLogout() {
   white-space: nowrap;
   transition: background 0.15s, transform 0.15s;
 }
-.new-annonce-btn:hover { background: #b83217; transform: translateY(-1px); }
+.new-annonce-btn:hover { background: #002d6e; transform: translateY(-1px); }
 
 /* Content */
 .content {

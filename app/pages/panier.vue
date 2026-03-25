@@ -245,7 +245,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.item-name:hover { color: #db3a1b; }
+.item-name:hover { color: #E1004E; }
 .item-meta { font-size: 12px; color: #9ca3af; margin-bottom: 6px; }
 .item-price-row { display: flex; align-items: center; gap: 8px; }
 .item-price { font-size: 16px; font-weight: 700; color: #2f3133; }
@@ -292,7 +292,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
   border-radius: 4px;
   transition: color 0.15s, background 0.15s;
 }
-.remove-btn:hover { color: #db3a1b; background: #fef2f0; }
+.remove-btn:hover { color: #E1004E; background: #fef2f0; }
 
 .promo-section {
   background: #fff;
@@ -327,7 +327,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
 .promo-btn:hover { background: #1a1c1e; }
 .promo-msg { margin-top: 8px; font-size: 13px; }
 .promo-msg--ok  { color: #2d6a4f; }
-.promo-msg--err { color: #db3a1b; }
+.promo-msg--err { color: #E1004E; }
 
 .cart-summary { position: sticky; top: 100px; }
 .summary-card {
@@ -338,7 +338,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
 .summary-title { font-size: 18px; font-weight: 700; color: #2f3133; margin-bottom: 20px; }
 .summary-lines { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
 .summary-line { display: flex; justify-content: space-between; font-size: 14px; color: #47494c; }
-.summary-line--discount { color: #db3a1b; font-weight: 600; }
+.summary-line--discount { color: #E1004E; font-weight: 600; }
 .delivery-free { color: #2d6a4f; font-weight: 600; }
 
 .free-delivery-bar {
@@ -375,7 +375,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
   justify-content: center;
   gap: 6px;
   width: 100%;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -385,7 +385,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
   transition: background 0.15s;
   margin-bottom: 16px;
 }
-.checkout-btn:hover { background: #ab331a; }
+.checkout-btn:hover { background: #c5003f; }
 
 .trust-badges { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5b5e61; }
@@ -412,7 +412,7 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
 .empty-cta {
   display: inline-flex;
   align-items: center;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -421,5 +421,5 @@ const total = computed(() => subtotal.value - discount.value + (subtotal.value >
   font-weight: 600;
   transition: background 0.15s;
 }
-.empty-cta:hover { background: #ab331a; }
+.empty-cta:hover { background: #c5003f; }
 </style>

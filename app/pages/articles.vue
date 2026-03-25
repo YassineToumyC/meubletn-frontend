@@ -214,7 +214,7 @@ function resetFilters() {
   background: #fff;
   transition: border-color 0.15s;
 }
-.filter-input:focus { border-color: #db3a1b; }
+.filter-input:focus { border-color: #E1004E; }
 .filter-select {
   height: 42px;
   border: 1.5px solid #e5e7eb;
@@ -229,16 +229,16 @@ function resetFilters() {
   max-width: 180px;
 }
 @media (max-width: 480px) { .filter-select { max-width: 100%; width: 100%; } }
-.filter-select:focus { border-color: #db3a1b; }
+.filter-select:focus { border-color: #E1004E; }
 .filter-reset {
   display: flex;
   align-items: center;
   gap: 6px;
   height: 42px;
   padding: 0 14px;
-  background: #fef2f2;
-  color: #db3a1b;
-  border: 1.5px solid #fecaca;
+  background: #fff0f6;
+  color: #E1004E;
+  border: 1.5px solid #fdb8ce;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
@@ -246,7 +246,7 @@ function resetFilters() {
   white-space: nowrap;
   transition: background 0.15s;
 }
-.filter-reset:hover { background: #fee2e2; }
+.filter-reset:hover { background: #ffe0ec; }
 
 .result-count {
   margin: 8px 0 0;
@@ -293,7 +293,7 @@ function resetFilters() {
 .btn-reset-empty {
   margin-top: 8px;
   padding: 10px 24px;
-  background: #db3a1b;
+  background: #E1004E;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -301,7 +301,7 @@ function resetFilters() {
   font-weight: 600;
   cursor: pointer;
 }
-.btn-reset-empty:hover { background: #b83217; }
+.btn-reset-empty:hover { background: #c5003f; }
 
 /* Pagination */
 .pagination {
@@ -325,12 +325,12 @@ function resetFilters() {
   transition: all 0.15s;
   white-space: nowrap;
 }
-.page-btn:hover:not(:disabled) { border-color: #db3a1b; color: #db3a1b; }
+.page-btn:hover:not(:disabled) { border-color: #E1004E; color: #E1004E; }
 .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .page-btn--active {
-  background: #db3a1b;
-  border-color: #db3a1b;
+  background: #E1004E;
+  border-color: #E1004E;
   color: #fff;
 }
-.page-btn--active:hover { background: #db3a1b; color: #fff; }
+.page-btn--active:hover { background: #E1004E; color: #fff; }
 </style>

@@ -61,7 +61,7 @@ const articles = [
 </script>
 
 <style scoped>
-.blog-page { background: #eeeeef; min-height: 100vh; }
+.blog-page { background: #fff; min-height: 100vh; }
 .blog-hero { background: linear-gradient(135deg, #2f3133 0%, #5a6a8e 100%); padding: 48px 0; }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 632px) { .wrap { padding: 0 24px; } }

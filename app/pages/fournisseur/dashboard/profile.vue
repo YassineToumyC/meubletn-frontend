@@ -288,8 +288,8 @@ async function savePassword() {
   background: #fafafa;
 }
 .field input:focus {
-  border-color: #db3a1b;
-  box-shadow: 0 0 0 3px rgba(219,58,27,0.08);
+  border-color: #003888;
+  box-shadow: 0 0 0 3px rgba(0,56,136,0.08);
   background: #fff;
 }
 .field input::placeholder { color: #c4c9d4; }
@@ -305,26 +305,26 @@ async function savePassword() {
   margin-bottom: 14px;
 }
 .alert--success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; }
-.alert--error   { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
+.alert--error   { background: #e8eef8; border: 1px solid #99b5d8; color: #dc2626; }
 
 /* Form footer */
 .form-footer { display: flex; justify-content: flex-end; margin-top: 20px; }
 .save-btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 22px;
-  background: #db3a1b; color: #fff;
+  background: #003888; color: #fff;
   border: none; border-radius: 9px;
   font-size: 14px; font-weight: 600;
   cursor: pointer; transition: background 0.15s, transform 0.15s;
 }
-.save-btn:hover:not(:disabled) { background: #b83217; transform: translateY(-1px); }
+.save-btn:hover:not(:disabled) { background: #002d6e; transform: translateY(-1px); }
 .save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 .save-btn--outline {
   background: transparent;
-  border: 1.5px solid #db3a1b;
-  color: #db3a1b;
+  border: 1.5px solid #003888;
+  color: #003888;
 }
-.save-btn--outline:hover:not(:disabled) { background: #fef2f2; transform: translateY(-1px); }
+.save-btn--outline:hover:not(:disabled) { background: #e8eef8; transform: translateY(-1px); }
 
 .btn-spinner {
   width: 14px; height: 14px;

@@ -164,7 +164,7 @@ async function handleLogin() {
 <style scoped>
 .auth-page {
   min-height: 100vh;
-  background: #f5f5f6;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +181,7 @@ async function handleLogin() {
 .auth-logo {
   font-size: 32px;
   font-weight: 800;
-  color: #db3a1b;
+  color: #E1004E;
   text-decoration: none;
   letter-spacing: -0.5px;
 }
@@ -221,7 +221,7 @@ async function handleLogin() {
 }
 .role-tab:not(:last-child) { border-right: 1.5px solid #e2e4e4; }
 .role-tab:hover { background: #f9fafb; color: #374151; }
-.role-tab--active { background: #db3a1b; color: #fff; }
+.role-tab--active { background: #E1004E; color: #fff; }
 .role-tab--active svg { stroke: #fff; }
 
 /* Info box */
@@ -252,7 +252,7 @@ async function handleLogin() {
   transition: border-color 0.15s;
   box-sizing: border-box;
 }
-.form-input:focus { border-color: #db3a1b; }
+.form-input:focus { border-color: #E1004E; }
 
 .password-wrap { position: relative; }
 .password-wrap .form-input { padding-right: 46px; }
@@ -266,19 +266,19 @@ async function handleLogin() {
   display: flex; align-items: center; gap: 8px;
   background: #fef2f0; border: 1px solid #f8c9c2;
   border-radius: 6px; padding: 10px 14px;
-  font-size: 13px; color: #db3a1b;
+  font-size: 13px; color: #E1004E;
 }
 
 .btn-submit {
   width: 100%; height: 48px;
-  background: #db3a1b; color: #fff;
+  background: #E1004E; color: #fff;
   border: none; border-radius: 6px;
   font-size: 15px; font-weight: 700; cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: background 0.15s;
   margin-top: 4px;
 }
-.btn-submit:hover:not(:disabled) { background: #ab331a; }
+.btn-submit:hover:not(:disabled) { background: #c5003f; }
 .btn-submit--pro { background: #1d4ed8; }
 .btn-submit--pro:hover:not(:disabled) { background: #1e3a8a; }
 .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
@@ -305,7 +305,7 @@ async function handleLogin() {
 .agent-hint-row svg { flex-shrink: 0; margin-top: 2px; }
 
 .auth-register { text-align: center; font-size: 13px; color: #6b7280; margin: 16px 0 0; }
-.link { color: #db3a1b; font-weight: 600; text-decoration: none; }
+.link { color: #E1004E; font-weight: 600; text-decoration: none; }
 .link:hover { text-decoration: underline; }
 
 .back-link { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #9ca3af; text-decoration: none; }

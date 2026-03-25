@@ -226,7 +226,7 @@ function doSearch() {
 .logo-text {
   font-size: 22px;
   font-weight: bold;
-  color: #db3a1b;
+  color: #E1004E;
   letter-spacing: -0.5px;
 }
 @media (min-width: 632px) { .logo-text { font-size: 26px; } }
@@ -277,7 +277,7 @@ function doSearch() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #db3a1b;
+  background-color: #E1004E;
   border: none;
   width: 44px;
   height: 44px;
@@ -286,7 +286,7 @@ function doSearch() {
   border-radius: 0 24px 24px 0;
   transition: background-color 0.15s;
 }
-.search-btn:hover { background-color: #ab331a; }
+.search-btn:hover { background-color: #c5003f; }
 
 /* Actions */
 .header-actions {
@@ -326,7 +326,7 @@ function doSearch() {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #db3a1b, #ff6b47);
+  background: linear-gradient(135deg, #E1004E, #ff4d85);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -334,13 +334,13 @@ function doSearch() {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(219,58,27,0.35);
+  box-shadow: 0 2px 6px rgba(225,0,78,0.35);
   transition: transform 0.15s, box-shadow 0.15s;
   letter-spacing: 0.3px;
 }
 .account-action:hover .user-avatar-chip {
   transform: scale(1.08);
-  box-shadow: 0 3px 10px rgba(219,58,27,0.45);
+  box-shadow: 0 3px 10px rgba(225,0,78,0.45);
 }
 /* Pro fournisseur: blue avatar */
 .user-avatar-chip--pro {
@@ -360,7 +360,7 @@ function doSearch() {
   position: absolute;
   top: -6px;
   right: -8px;
-  background-color: #db3a1b;
+  background-color: #E1004E;
   color: #ffffff;
   font-size: 10px;
   font-weight: bold;

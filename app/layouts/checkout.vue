@@ -52,7 +52,7 @@ const currentStep = computed(() => steps[stepIndex.value]?.key ?? 'cart')
 <style>
 .checkout-wrapper {
   min-height: 100vh;
-  background-color: #eeeeef;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 }
@@ -82,7 +82,7 @@ const currentStep = computed(() => steps[stepIndex.value]?.key ?? 'cart')
 .checkout-logo {
   font-size: 22px;
   font-weight: bold;
-  color: #db3a1b;
+  color: #E1004E;
   text-decoration: none;
   flex-shrink: 0;
 }
@@ -103,7 +103,7 @@ const currentStep = computed(() => steps[stepIndex.value]?.key ?? 'cart')
   color: #a0a4a8;
 }
 .step--active { color: #2f3133; }
-.step--active .step-num { background-color: #db3a1b; color: #ffffff; }
+.step--active .step-num { background-color: #E1004E; color: #ffffff; }
 .step--done { color: #717678; }
 .step--done .step-num { background-color: #2f3133; color: #ffffff; }
 .step-num {

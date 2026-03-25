@@ -114,7 +114,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.homepage { padding-bottom: 80px; background: #f9fafb; }
+.homepage { padding-bottom: 80px; background: #fff; }
 
 .container {
   max-width: 1400px;
@@ -143,7 +143,7 @@ onMounted(async () => {
 }
 @media (min-width: 768px) { .section-title { font-size: 24px; } }
 .see-all {
-  color: #db3a1b;
+  color: #E1004E;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
@@ -178,7 +178,7 @@ onMounted(async () => {
 
 /* ── CTA block ── */
 .cta-block {
-  background: linear-gradient(135deg, #db3a1b 0%, #b83217 100%);
+  background: linear-gradient(135deg, #E1004E 0%, #c5003f 100%);
   border-radius: 16px;
   padding: 40px 32px;
   display: flex;
@@ -204,7 +204,7 @@ onMounted(async () => {
   gap: 10px;
   padding: 14px 28px;
   background: #fff;
-  color: #db3a1b;
+  color: #E1004E;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 700;
@@ -213,7 +213,7 @@ onMounted(async () => {
   transition: background 0.15s, transform 0.15s;
   flex-shrink: 0;
 }
-.cta-btn:hover { background: #fef2f2; transform: translateY(-1px); }
+.cta-btn:hover { background: #fff0f6; transform: translateY(-1px); }
 
 /* Skeleton */
 .skeleton-title {
