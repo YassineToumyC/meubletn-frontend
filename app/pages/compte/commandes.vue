@@ -76,7 +76,11 @@ definePageMeta({ middleware: 'auth' })
 useHead({ title: 'Mes commandes | meubletn' })
 const formatPrice = (n: number) =>
   n.toLocaleString('fr-TN', { style: 'currency', currency: 'TND', minimumFractionDigits: 0 })
-const { user, logout } = useAuth()
+const { user, logout: authLogout } = useAuth()
+async function logout() {
+  await authLogout()
+  await navigateTo('/auth/login')
+}
 const userInitials = computed(() => {
   if (!user.value) return '?'
   return `${user.value.prenom[0] ?? ''}${user.value.nom[0] ?? ''}`.toUpperCase()

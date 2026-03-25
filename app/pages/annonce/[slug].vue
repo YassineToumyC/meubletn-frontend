@@ -123,6 +123,11 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               Ajouter au panier
             </button>
+            <button class="btn-wish" :class="{ 'btn-wish--active': isWishlisted(announcement.id) }" :title="isWishlisted(announcement.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'" @click="toggleWish">
+              <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :fill="isWishlisted(announcement.id) ? 'currentColor' : 'none'">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
           </div>
           <div v-if="addedMsg" class="added-msg">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -175,15 +180,20 @@ const route  = useRoute()
 const config = useRuntimeConfig()
 const slug   = computed(() => route.params.slug as string)
 const { add } = useCart()
+const { toggle, isWishlisted } = useWishlist()
 
 const qty      = ref(1)
 const addedMsg = ref(false)
 
 function handleAddToCart() {
   if (!announcement.value) return
-  for (let i = 0; i < qty.value; i++) add(announcement.value.id)
+  add(announcement.value, qty.value)
   addedMsg.value = true
   setTimeout(() => { addedMsg.value = false }, 2500)
+}
+
+function toggleWish() {
+  if (announcement.value) toggle(announcement.value)
 }
 
 const announcement = ref<Announcement | null>(null)
@@ -472,6 +482,22 @@ useHead(() => ({
   white-space: nowrap;
 }
 .btn-cart:hover { background: #b83217; }
+.btn-wish {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.btn-wish:hover { color: #db3a1b; border-color: #db3a1b; background: #fef2f2; }
+.btn-wish--active { color: #db3a1b; border-color: #db3a1b; background: #fef2f2; }
 .added-msg {
   display: flex;
   align-items: center;

@@ -92,7 +92,6 @@ export const useAuth = () => {
     try { await apiFetch('/auth/logout', { method: 'POST' }) } catch {}
     token.value = null
     user.value  = null
-    await navigateTo('/auth/login')
   }
 
   return { user, token, isLoggedIn, apiFetch, fetchUser, login, register, updateProfile, changePassword, logout }

@@ -1,63 +1,48 @@
-export interface Product {
-  id: number
-  name: string
-  brand: string
-  slug: string
-  category: string
-  categorySlug: string
-  price: number
-  oldPrice?: number | null
-  badge?: string | null
-  badgeType?: 'sale' | 'new' | 'promo' | ''
-  rating: number
-  reviewCount: number
-  imgColor: string
-  icon: string
-  isNew?: boolean
-  isBestseller?: boolean
-}
+import type { Announcement } from '~/composables/useAnnouncements'
 
-interface CartItem {
-  productId: number
+export interface CartItem {
+  announcement: Announcement
   qty: number
 }
 
-// Will be replaced with real API products when available
-const allProducts: Product[] = []
+let cartInitialized = false
 
 export const useCart = () => {
   const items = useState<CartItem[]>('cart-items', () => [])
 
-  const count = computed(() => items.value.reduce((sum, i) => sum + i.qty, 0))
+  if (import.meta.client && !cartInitialized) {
+    cartInitialized = true
+    try {
+      const saved = localStorage.getItem('meubletn_cart')
+      if (saved) items.value = JSON.parse(saved)
+    } catch {}
+    watch(items, v => localStorage.setItem('meubletn_cart', JSON.stringify(v)), { deep: true })
+  }
 
-  function add(productId: number, qty = 1) {
-    const existing = items.value.find(i => i.productId === productId)
+  const count = computed(() => items.value.reduce((s, i) => s + i.qty, 0))
+
+  function add(announcement: Announcement, qty = 1) {
+    const existing = items.value.find(i => i.announcement.id === announcement.id)
     if (existing) {
       existing.qty += qty
     } else {
-      items.value.push({ productId, qty })
+      items.value.push({ announcement, qty })
     }
   }
 
-  function remove(productId: number) {
-    items.value = items.value.filter(i => i.productId !== productId)
+  function remove(id: number) {
+    items.value = items.value.filter(i => i.announcement.id !== id)
   }
 
-  function updateQty(productId: number, qty: number) {
-    if (qty < 1) return remove(productId)
-    const item = items.value.find(i => i.productId === productId)
+  function updateQty(id: number, qty: number) {
+    if (qty < 1) return remove(id)
+    const item = items.value.find(i => i.announcement.id === id)
     if (item) item.qty = qty
   }
 
-  const cartProducts = computed(() =>
-    items.value
-      .map(i => ({ item: i, product: allProducts.find(p => p.id === i.productId) }))
-      .filter(x => x.product !== undefined)
-  )
-
   const subtotal = computed(() =>
-    cartProducts.value.reduce((sum, x) => sum + (x.product!.price * x.item.qty), 0)
+    items.value.reduce((s, i) => s + ((i.announcement.price ?? 0) * i.qty), 0),
   )
 
-  return { items, count, add, remove, updateQty, cartProducts, subtotal }
+  return { items, count, add, remove, updateQty, subtotal }
 }

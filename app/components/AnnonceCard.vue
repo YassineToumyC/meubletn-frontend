@@ -18,6 +18,11 @@
       <span class="card-condition" :class="`condition--${announcement.condition}`">
         {{ CONDITION_LABELS[announcement.condition] }}
       </span>
+      <button class="wish-btn" :class="{ 'wish-btn--active': wishlisted }" aria-label="Favoris" @click.prevent.stop="toggleWish">
+        <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :fill="wishlisted ? 'currentColor' : 'none'">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Content -->
@@ -42,6 +47,10 @@ import { CONDITION_LABELS } from '~/composables/useAnnouncements'
 
 const props = defineProps<{ announcement: Announcement }>()
 const config = useRuntimeConfig()
+const { toggle, isWishlisted } = useWishlist()
+
+const wishlisted = computed(() => isWishlisted(props.announcement.id))
+function toggleWish() { toggle(props.announcement) }
 
 const firstImage = computed(() => {
   const path = props.announcement.images?.[0]
@@ -89,6 +98,26 @@ function formatPrice(price: number): string {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
 }
+
+/* Wishlist button */
+.wish-btn {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  transition: color 0.15s, background 0.15s;
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+.wish-btn:hover { color: #db3a1b; background: #fff; }
+.wish-btn--active { color: #db3a1b; }
 
 /* Condition badge */
 .card-condition {

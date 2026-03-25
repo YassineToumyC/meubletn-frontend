@@ -1,199 +1,177 @@
 <template>
   <div class="cart-container">
-      <!-- Page title -->
-      <h1 class="cart-title">Mon panier <span class="cart-count">({{ cartItems.length }} article{{ cartItems.length !== 1 ? 's' : '' }})</span></h1>
+    <h1 class="cart-title">Mon panier <span class="cart-count">({{ items.length }} article{{ items.length !== 1 ? 's' : '' }})</span></h1>
 
-      <div v-if="cartItems.length > 0" class="cart-layout">
-        <!-- Left: Items list -->
-        <div class="cart-items">
-          <div v-for="item in cartItems" :key="item.id" class="cart-item">
-            <!-- Product image -->
-            <div class="item-img" :style="{ backgroundColor: item.product.imgColor }">
-              <div v-html="item.product.icon" class="item-icon"></div>
+    <div v-if="items.length > 0" class="cart-layout">
+      <!-- Left: Items list -->
+      <div class="cart-items">
+        <div v-for="item in items" :key="item.announcement.id" class="cart-item">
+          <!-- Image -->
+          <div class="item-img">
+            <img
+              v-if="imgUrl(item.announcement)"
+              :src="imgUrl(item.announcement)"
+              :alt="item.announcement.title"
+              class="item-img-actual"
+            />
+            <svg v-else width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+
+          <!-- Info -->
+          <div class="item-details">
+            <div v-if="item.announcement.marque" class="item-brand">{{ item.announcement.marque }}</div>
+            <NuxtLink :to="`/annonce/${item.announcement.slug}`" class="item-name">{{ item.announcement.title }}</NuxtLink>
+            <div v-if="item.announcement.ville" class="item-meta">{{ item.announcement.ville }}</div>
+            <div class="item-price-row">
+              <span class="item-price">
+                {{ item.announcement.price !== null ? formatPrice(item.announcement.price) : 'Prix à négocier' }}
+              </span>
             </div>
+          </div>
 
-            <!-- Product info -->
-            <div class="item-details">
-              <div class="item-brand">{{ item.product.brand }}</div>
-              <NuxtLink :to="`/produit/${item.product.slug}`" class="item-name">{{ item.product.name }}</NuxtLink>
-              <div class="item-meta">
-                <span v-if="item.product.badge && item.product.badgeType === 'sale'" class="item-badge-sale">{{ item.product.badge }}</span>
-              </div>
-              <div class="item-price-row">
-                <span class="item-price">{{ formatPrice(item.product.price) }}</span>
-                <span v-if="item.product.oldPrice" class="item-old-price">{{ formatPrice(item.product.oldPrice) }}</span>
-              </div>
-            </div>
-
-            <!-- Quantity + remove -->
-            <div class="item-actions">
-              <div class="qty-control">
-                <button class="qty-btn" @click="updateQty(item.id, item.qty - 1)" :disabled="item.qty <= 1" aria-label="Diminuer">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </button>
-                <span class="qty-value">{{ item.qty }}</span>
-                <button class="qty-btn" @click="updateQty(item.id, item.qty + 1)" aria-label="Augmenter">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </button>
-              </div>
-              <div class="item-subtotal">{{ formatPrice(item.product.price * item.qty) }}</div>
-              <button class="remove-btn" @click="removeItem(item.id)" aria-label="Supprimer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          <!-- Qty + remove -->
+          <div class="item-actions">
+            <div class="qty-control">
+              <button class="qty-btn" :disabled="item.qty <= 1" @click="updateQty(item.announcement.id, item.qty - 1)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <span class="qty-value">{{ item.qty }}</span>
+              <button class="qty-btn" @click="updateQty(item.announcement.id, item.qty + 1)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               </button>
             </div>
-          </div>
-
-          <!-- Promo code -->
-          <div class="promo-section">
-            <h3 class="promo-title">Code promo</h3>
-            <div class="promo-form">
-              <input v-model="promoCode" type="text" class="promo-input" placeholder="Entrez votre code promo" />
-              <button class="promo-btn" @click="applyPromo">Appliquer</button>
+            <div v-if="item.announcement.price !== null" class="item-subtotal">
+              {{ formatPrice(item.announcement.price * item.qty) }}
             </div>
-            <p v-if="promoMsg" class="promo-msg" :class="promoSuccess ? 'promo-msg--ok' : 'promo-msg--err'">{{ promoMsg }}</p>
+            <button class="remove-btn" aria-label="Supprimer" @click="remove(item.announcement.id)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            </button>
           </div>
         </div>
 
-        <!-- Right: Order summary -->
-        <div class="cart-summary">
-          <div class="summary-card">
-            <h2 class="summary-title">Récapitulatif</h2>
-
-            <div class="summary-lines">
-              <div class="summary-line">
-                <span>Sous-total</span>
-                <span>{{ formatPrice(subtotal) }}</span>
-              </div>
-              <div v-if="discount > 0" class="summary-line summary-line--discount">
-                <span>Réduction</span>
-                <span>-{{ formatPrice(discount) }}</span>
-              </div>
-              <div class="summary-line">
-                <span>Livraison</span>
-                <span v-if="subtotal >= 990" class="delivery-free">Gratuite</span>
-                <span v-else>{{ formatPrice(deliveryFee) }}</span>
-              </div>
-            </div>
-
-            <div v-if="subtotal < 990" class="free-delivery-bar">
-              <div class="free-delivery-text">
-                Plus que <strong>{{ formatPrice(990 - subtotal) }}</strong> pour la livraison gratuite
-              </div>
-              <div class="free-delivery-progress">
-                <div class="free-delivery-fill" :style="{ width: Math.min(100, (subtotal / 990) * 100) + '%' }"></div>
-              </div>
-            </div>
-
-            <div class="summary-total">
-              <span>Total</span>
-              <span>{{ formatPrice(total) }}</span>
-            </div>
-
-            <p class="summary-tax">TVA incluse</p>
-
-            <NuxtLink to="/checkout/livraison" class="checkout-btn">
-              Commander
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-            </NuxtLink>
-
-            <!-- Trust badges -->
-            <div class="trust-badges">
-              <div class="trust-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Paiement sécurisé
-              </div>
-              <div class="trust-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.33"/></svg>
-                Retour sous 30 jours
-              </div>
-            </div>
-
-            <!-- Payment logos -->
-            <div class="payment-logos">
-              <span class="payment-chip">VISA</span>
-              <span class="payment-chip">Mastercard</span>
-              <span class="payment-chip">CB</span>
-            </div>
+        <!-- Promo code -->
+        <div class="promo-section">
+          <h3 class="promo-title">Code promo</h3>
+          <div class="promo-form">
+            <input v-model="promoCode" type="text" class="promo-input" placeholder="Entrez votre code promo" />
+            <button class="promo-btn" @click="applyPromo">Appliquer</button>
           </div>
+          <p v-if="promoMsg" class="promo-msg" :class="promoSuccess ? 'promo-msg--ok' : 'promo-msg--err'">{{ promoMsg }}</p>
         </div>
       </div>
 
-      <!-- Empty cart -->
-      <div v-else class="cart-empty">
-        <div class="empty-icon">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d9dadb" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        </div>
-        <h2 class="empty-title">Votre panier est vide</h2>
-        <p class="empty-desc">Découvrez notre sélection de meubles et trouvez la pièce idéale pour votre intérieur.</p>
-        <NuxtLink to="/" class="empty-cta">Continuer mes achats</NuxtLink>
-      </div>
+      <!-- Right: Order summary -->
+      <div class="cart-summary">
+        <div class="summary-card">
+          <h2 class="summary-title">Récapitulatif</h2>
 
-      <!-- Suggested products -->
-      <div class="suggestions">
-        <h2 class="suggestions-title">Vous aimerez aussi</h2>
-        <div class="suggestions-grid">
-          <NuxtLink
-            v-for="product in suggested"
-            :key="product.id"
-            :to="`/produit/${product.slug}`"
-            class="suggestion-card"
-          >
-            <div class="suggestion-img" :style="{ backgroundColor: product.imgColor }">
-              <div v-html="product.icon" class="suggestion-icon"></div>
-              <span v-if="product.badge" class="suggestion-badge" :class="product.badgeType === 'sale' ? 'badge--sale' : 'badge--new'">{{ product.badge }}</span>
+          <div class="summary-lines">
+            <div class="summary-line">
+              <span>Sous-total</span>
+              <span>{{ formatPrice(subtotal) }}</span>
             </div>
-            <div class="suggestion-info">
-              <div class="suggestion-brand">{{ product.brand }}</div>
-              <div class="suggestion-name">{{ product.name }}</div>
-              <div class="suggestion-pricing">
-                <span class="suggestion-price">{{ formatPrice(product.price) }}</span>
-                <span v-if="product.oldPrice" class="suggestion-old">{{ formatPrice(product.oldPrice) }}</span>
-              </div>
+            <div v-if="discount > 0" class="summary-line summary-line--discount">
+              <span>Réduction</span>
+              <span>-{{ formatPrice(discount) }}</span>
             </div>
+            <div class="summary-line">
+              <span>Livraison</span>
+              <span v-if="subtotal >= 990" class="delivery-free">Gratuite</span>
+              <span v-else>{{ formatPrice(deliveryFee) }}</span>
+            </div>
+          </div>
+
+          <div v-if="subtotal < 990" class="free-delivery-bar">
+            <div class="free-delivery-text">
+              Plus que <strong>{{ formatPrice(990 - subtotal) }}</strong> pour la livraison gratuite
+            </div>
+            <div class="free-delivery-progress">
+              <div class="free-delivery-fill" :style="{ width: Math.min(100, (subtotal / 990) * 100) + '%' }" />
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span>{{ formatPrice(total) }}</span>
+          </div>
+
+          <p class="summary-tax">TVA incluse</p>
+
+          <NuxtLink to="/checkout/livraison" class="checkout-btn">
+            Commander
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </NuxtLink>
+
+          <div class="trust-badges">
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Paiement sécurisé
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.33"/></svg>
+              Retour sous 30 jours
+            </div>
+          </div>
+
+          <div class="payment-logos">
+            <span class="payment-chip">VISA</span>
+            <span class="payment-chip">Mastercard</span>
+            <span class="payment-chip">CB</span>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Empty cart -->
+    <div v-else class="cart-empty">
+      <div class="empty-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d9dadb" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </div>
+      <h2 class="empty-title">Votre panier est vide</h2>
+      <p class="empty-desc">Découvrez notre sélection de meubles et trouvez la pièce idéale pour votre intérieur.</p>
+      <NuxtLink to="/" class="empty-cta">Continuer mes achats</NuxtLink>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ layout: 'checkout' })
 
+const config = useRuntimeConfig()
+const { items, remove, updateQty, subtotal } = useCart()
+
+function imgUrl(announcement: any): string | null {
+  const path = announcement.images?.[0]
+  if (!path) return null
+  return path.startsWith('http') ? path : `${config.public.storageBase}/${path}`
+}
+
 const formatPrice = (n: number) =>
-  n.toLocaleString('fr-TN', { style: 'currency', currency: 'TND', minimumFractionDigits: 0 })
-const allProducts: any[] = []
-const { cartProducts, updateQty, remove: removeItem, subtotal: cartSubtotal } = useCart()
+  new Intl.NumberFormat('fr-TN', { style: 'currency', currency: 'TND', minimumFractionDigits: 0 }).format(n)
 
-// Map cart products to a flat list for template
-const cartItems = computed(() =>
-  cartProducts.value.map(x => ({ id: x.item.productId, product: x.product!, qty: x.item.qty }))
-)
-
-// ── Promo code ──
-const promoCode = ref('')
-const promoMsg = ref('')
+// Promo code
+const promoCode   = ref('')
+const promoMsg    = ref('')
 const promoSuccess = ref(false)
-const discount = ref(0)
+const discount    = ref(0)
 
 function applyPromo() {
   if (promoCode.value.toUpperCase() === 'MEUBLETN10') {
-    discount.value = Math.round(subtotal.value * 0.10)
-    promoMsg.value = 'Code promo appliqué ! -10%'
+    discount.value   = Math.round(subtotal.value * 0.10)
+    promoMsg.value   = 'Code promo appliqué ! -10%'
     promoSuccess.value = true
   } else {
-    discount.value = 0
-    promoMsg.value = 'Code promo invalide ou expiré.'
+    discount.value   = 0
+    promoMsg.value   = 'Code promo invalide ou expiré.'
     promoSuccess.value = false
   }
 }
 
-// ── Totals ──
 const deliveryFee = 29
-const subtotal = cartSubtotal
 const total = computed(() => subtotal.value - discount.value + (subtotal.value >= 990 ? 0 : deliveryFee))
-
-// ── Suggested products ──
-const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i => i.product.id === p.id)).slice(0, 4))
 </script>
 
 <style scoped>
@@ -213,7 +191,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   color: #717678;
 }
 
-/* Layout */
 .cart-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -224,7 +201,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   .cart-layout { grid-template-columns: 1fr 360px; }
 }
 
-/* Cart items */
 .cart-items {
   display: flex;
   flex-direction: column;
@@ -235,49 +211,45 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   gap: 16px;
   background: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 16px;
   align-items: center;
 }
+@media (max-width: 480px) {
+  .cart-item { flex-wrap: wrap; }
+  .item-actions { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
+}
 
-/* Item image */
 .item-img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 6px;
+  overflow: hidden;
+  background: #f3f4f6;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.item-icon { display: flex; align-items: center; justify-content: center; }
+.item-img-actual { width: 100%; height: 100%; object-fit: cover; }
 
-/* Item details */
 .item-details { flex: 1; min-width: 0; }
-.item-brand { font-size: 12px; color: #717678; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.item-brand { font-size: 11px; color: #717678; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 .item-name {
   font-size: 15px;
   font-weight: 600;
   color: #2f3133;
   text-decoration: none;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .item-name:hover { color: #db3a1b; }
-.item-badge-sale {
-  display: inline-block;
-  background: #db3a1b;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  margin-bottom: 6px;
-}
+.item-meta { font-size: 12px; color: #9ca3af; margin-bottom: 6px; }
 .item-price-row { display: flex; align-items: center; gap: 8px; }
-.item-price { font-size: 17px; font-weight: 700; color: #2f3133; }
-.item-old-price { font-size: 13px; color: #717678; text-decoration: line-through; }
+.item-price { font-size: 16px; font-weight: 700; color: #2f3133; }
 
-/* Item actions */
 .item-actions {
   display: flex;
   flex-direction: column;
@@ -322,7 +294,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .remove-btn:hover { color: #db3a1b; background: #fef2f0; }
 
-/* Promo code */
 .promo-section {
   background: #fff;
   border-radius: 8px;
@@ -355,10 +326,9 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .promo-btn:hover { background: #1a1c1e; }
 .promo-msg { margin-top: 8px; font-size: 13px; }
-.promo-msg--ok { color: #2d6a4f; }
+.promo-msg--ok  { color: #2d6a4f; }
 .promo-msg--err { color: #db3a1b; }
 
-/* Summary */
 .cart-summary { position: sticky; top: 100px; }
 .summary-card {
   background: #fff;
@@ -367,16 +337,10 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .summary-title { font-size: 18px; font-weight: 700; color: #2f3133; margin-bottom: 20px; }
 .summary-lines { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-.summary-line {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #47494c;
-}
+.summary-line { display: flex; justify-content: space-between; font-size: 14px; color: #47494c; }
 .summary-line--discount { color: #db3a1b; font-weight: 600; }
 .delivery-free { color: #2d6a4f; font-weight: 600; }
 
-/* Free delivery bar */
 .free-delivery-bar {
   background: #f5f5f5;
   border-radius: 6px;
@@ -385,12 +349,7 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .free-delivery-text { font-size: 12px; color: #5b5e61; margin-bottom: 8px; }
 .free-delivery-text strong { color: #2f3133; }
-.free-delivery-progress {
-  height: 6px;
-  background: #d9dadb;
-  border-radius: 3px;
-  overflow: hidden;
-}
+.free-delivery-progress { height: 6px; background: #d9dadb; border-radius: 3px; overflow: hidden; }
 .free-delivery-fill {
   height: 100%;
   background: #2d6a4f;
@@ -398,7 +357,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   transition: width 0.3s ease;
 }
 
-/* Total */
 .summary-total {
   display: flex;
   justify-content: space-between;
@@ -411,7 +369,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .summary-tax { font-size: 11px; color: #717678; margin-bottom: 20px; }
 
-/* Checkout button */
 .checkout-btn {
   display: flex;
   align-items: center;
@@ -430,20 +387,8 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
 }
 .checkout-btn:hover { background: #ab331a; }
 
-/* Trust */
-.trust-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #5b5e61;
-}
+.trust-badges { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5b5e61; }
 .payment-logos { display: flex; gap: 6px; flex-wrap: wrap; }
 .payment-chip {
   border: 1px solid #d9dadb;
@@ -454,7 +399,6 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   color: #47494c;
 }
 
-/* Empty cart */
 .cart-empty {
   background: #fff;
   border-radius: 8px;
@@ -478,44 +422,4 @@ const suggested = computed(() => allProducts.filter(p => !cartItems.value.some(i
   transition: background 0.15s;
 }
 .empty-cta:hover { background: #ab331a; }
-
-/* Suggestions */
-.suggestions { margin-top: 48px; }
-.suggestions-title { font-size: 22px; font-weight: 700; color: #2f3133; margin-bottom: 20px; }
-.suggestions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-@media (min-width: 632px) { .suggestions-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 984px) { .suggestions-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.suggestion-card { text-decoration: none; background: #fff; border-radius: 8px; overflow: hidden; transition: box-shadow 0.15s; }
-.suggestion-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-.suggestion-img {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.suggestion-icon { display: flex; align-items: center; justify-content: center; }
-.suggestion-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  color: #fff;
-}
-.badge--sale { background: #db3a1b; }
-.badge--new { background: #2d6a4f; }
-.suggestion-info { padding: 12px; }
-.suggestion-brand { font-size: 11px; color: #717678; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.suggestion-name { font-size: 13px; font-weight: 600; color: #2f3133; margin-bottom: 8px; line-height: 1.3; }
-.suggestion-pricing { display: flex; align-items: center; gap: 6px; }
-.suggestion-price { font-size: 14px; font-weight: 700; color: #2f3133; }
-.suggestion-old { font-size: 12px; color: #717678; text-decoration: line-through; }
 </style>

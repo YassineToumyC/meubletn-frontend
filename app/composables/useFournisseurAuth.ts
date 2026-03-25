@@ -81,7 +81,6 @@ export const useFournisseurAuth = () => {
     try { await apiFetch('/fournisseur/logout', { method: 'POST' }) } catch {}
     token.value = null
     user.value  = null
-    navigateTo('/fournisseur/login')
   }
 
   async function updateProfile(payload: Partial<FournisseurUser>) {

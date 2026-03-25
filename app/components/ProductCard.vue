@@ -34,10 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '~/composables/useCart'
+import type { Product } from '~/composables/useProducts'
 
 const props = defineProps<{ product: Product }>()
-const { add } = useCart()
 const formatPrice = (n: number) =>
   n.toLocaleString('fr-TN', { style: 'currency', currency: 'TND', minimumFractionDigits: 0 })
 
@@ -45,7 +44,7 @@ const badgeClass = computed(() =>
   props.product.badgeType === 'sale' ? 'pcard-badge--sale' : 'pcard-badge--new'
 )
 
-function handleAdd() { add(props.product.id) }
+function handleAdd() { /* legacy mock product — no cart integration */ }
 </script>
 
 <style scoped>
