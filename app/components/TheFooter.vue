@@ -195,7 +195,7 @@ const footerCols = [
   gap: 32px 24px;
 }
 @media (min-width: 984px) {
-  .footer-grid { grid-template-columns: repeat(4, 1fr); padding: 0 48px; }
+  .footer-grid { grid-template-columns: repeat(5, 1fr); padding: 0 48px; }
 }
 @media (min-width: 1392px) {
   .footer-grid { padding: 0 64px; }
