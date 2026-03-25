@@ -68,6 +68,8 @@
 </template>
 
 <script setup lang="ts">
+const { categories } = useCategories()
+
 const trustBadges = [
   {
     title: 'Livraison gratuite dès 99€',
@@ -113,59 +115,17 @@ const footerCols = [
     ],
   },
   {
-    title: 'Meubles',
-    links: [
-      { label: 'Canapés',                  href: '/categorie/canapes' },
-      { label: 'Fauteuils',                href: '/categorie/fauteuils' },
-      { label: 'Chaises',                  href: '/categorie/chaises' },
-      { label: 'Tables',                   href: '/categorie/tables' },
-      { label: 'Lits & literie',           href: '/categorie/lits-literie' },
-      { label: 'Armoires & placards',      href: '/categorie/armoires-placards' },
-      { label: 'Bancs',                    href: '/categorie/bancs' },
-      { label: 'Buffets hauts',            href: '/categorie/buffets-hauts' },
-      { label: 'Tabourets',               href: '/categorie/tabourets' },
-      { label: 'Cheminées',               href: '/categorie/cheminees' },
-      { label: 'Commodes',                href: '/categorie/commodes' },
-      { label: 'Sommiers',                href: '/categorie/sommiers' },
-      { label: 'Matelas',                 href: '/categorie/matelas' },
-      { label: 'Étagères',               href: '/categorie/etageres' },
-      { label: 'Enfilades',               href: '/categorie/enfilades' },
-      { label: 'Meubles TV',              href: '/categorie/meubles-tv' },
-      { label: 'Meubles TV muraux',       href: '/categorie/meubles-tv-muraux' },
-      { label: 'Sièges de bar',           href: '/categorie/sieges-de-bar' },
-      { label: 'Vaisseliers',             href: '/categorie/vaisseliers' },
-      { label: 'Vestiaires',              href: '/categorie/vestiaires' },
-      { label: 'Accessoires pour meubles',href: '/categorie/accessoires-pour-meubles' },
-      { label: 'Ensembles de meubles',    href: '/categorie/ensembles-de-meubles' },
-      { label: 'Meubles de salon',        href: '/categorie/meubles-de-salon' },
-      { label: 'Meubles salle à manger',  href: '/categorie/meubles-salle-manger' },
-      { label: 'Meubles de chambre',      href: '/categorie/meubles-chambre' },
-      { label: "Meubles d'entrée",        href: '/categorie/meubles-entree' },
-      { label: 'Meubles bar',             href: '/categorie/meubles-bar' },
-      { label: 'Mobilier de bureau',      href: '/categorie/mobilier-bureau' },
-    ],
+    title: 'Catégories',
+    links: categories.value.map(c => ({ label: c.name, href: `/categorie/${c.slug}` })),
   },
   {
-    title: 'Jardin & Loisirs',
+    title: 'Explorer',
     links: [
-      { label: 'Mobilier de jardin',                   href: '/categorie/mobilier-jardin' },
-      { label: 'Mobilier de balcon',                   href: '/categorie/mobilier-balcon' },
-      { label: 'Mobilier lounge',                      href: '/categorie/mobilier-lounge' },
-      { label: 'Matériel de camping',                  href: '/categorie/materiel-camping' },
-      { label: 'Barbecues',                            href: '/categorie/barbecues' },
-      { label: 'Protections solaires',                 href: '/categorie/protections-solaires' },
-      { label: 'Piscines',                             href: '/categorie/piscines' },
-      { label: 'Spa & Bien-être',                      href: '/categorie/spa-bien-etre' },
-      { label: 'Jeux de plein air',                    href: '/categorie/jeux-plein-air' },
-      { label: 'Déco jardin',                          href: '/categorie/deco-jardin' },
-      { label: 'Contenants pour plantes',              href: '/categorie/contenants-plantes' },
-      { label: 'Revêtements sol extérieur',            href: '/categorie/revetements-sol-ext' },
-      { label: 'Abris de jardin',                      href: '/categorie/abris-jardin' },
-      { label: 'Équipement jardin',                    href: '/categorie/equipement-jardin' },
-      { label: 'Brise-vues',                           href: '/categorie/brise-vues' },
-      { label: 'Arrosage jardin',                      href: '/categorie/arrosage-jardin' },
-      { label: 'Tapis extérieur',                      href: '/categorie/tapis-exterieur' },
-      { label: 'Éclairage extérieur',                  href: '/categorie/eclairage-exterieur' },
+      { label: 'Nouveautés',           href: '/nouveautes' },
+      { label: 'Sélectionné pour vous', href: '/#tous-les-articles' },
+      { label: 'Tous les articles',    href: '/#tous-les-articles' },
+      { label: 'Meilleures ventes',    href: '/meilleures-ventes' },
+      { label: 'Soldes',               href: '/soldes' },
     ],
   },
   {
@@ -235,7 +195,7 @@ const footerCols = [
   gap: 32px 24px;
 }
 @media (min-width: 984px) {
-  .footer-grid { grid-template-columns: repeat(5, 1fr); padding: 0 48px; }
+  .footer-grid { grid-template-columns: repeat(4, 1fr); padding: 0 48px; }
 }
 @media (min-width: 1392px) {
   .footer-grid { padding: 0 64px; }
