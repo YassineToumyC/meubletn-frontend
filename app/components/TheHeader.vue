@@ -156,6 +156,7 @@ function doSearch() {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
 }
 @media (min-width: 632px) {

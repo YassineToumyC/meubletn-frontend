@@ -136,10 +136,15 @@ function formatPrice(price: number): string {
   color: #6b7280;
   margin: 0;
   line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: none;
+}
+@media (min-width: 480px) {
+  .card-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 .card-footer {
   display: flex;

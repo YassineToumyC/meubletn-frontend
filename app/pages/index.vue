@@ -235,17 +235,19 @@ function filterByCategory(id: number) {
 /* Search bar */
 .search-section {
   background: #fff;
-  padding: 20px 0;
+  padding: 16px 0;
   border-bottom: 1px solid #f3f4f6;
-  position: sticky;
-  top: 0;
-  z-index: 20;
 }
 .search-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
   max-width: 720px;
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .search-input  { min-width: 0; }
+  .condition-select { width: 100%; flex-shrink: 1; }
 }
 .search-icon {
   position: absolute;

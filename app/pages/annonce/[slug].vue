@@ -421,6 +421,11 @@ useHead(() => ({
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 400px) {
+  .qty-control { width: 100%; justify-content: center; }
+  .btn-cart    { width: 100%; }
 }
 .qty-control {
   display: flex;
