@@ -36,12 +36,12 @@
         <form @submit.prevent="saveProfile">
           <div class="fields">
             <div class="field span-2">
-              <label>Nom de l'entreprise *</label>
-              <input v-model="profileForm.nom_entreprise" type="text" required placeholder="Ex: Meubles Ben Salah" />
+              <label>Nom de l'entreprise</label>
+              <input v-model="profileForm.nom_entreprise" type="text" placeholder="Ex: Meubles Ben Salah" />
             </div>
             <div class="field">
-              <label>Email professionnel *</label>
-              <input v-model="profileForm.email" type="email" required placeholder="contact@entreprise.tn" />
+              <label>Email professionnel</label>
+              <input v-model="profileForm.email" type="email" placeholder="contact@entreprise.tn" />
             </div>
             <div class="field">
               <label>Téléphone</label>
