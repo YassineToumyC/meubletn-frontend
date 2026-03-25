@@ -71,7 +71,7 @@
           <!-- Account btn — client, fournisseur, or guest -->
           <NuxtLink :to="accountLink" class="action-btn account-action" :aria-label="accountLabel">
             <!-- Logged in: colored avatar with initials -->
-            <div v-if="isLoggedIn || fLoggedIn" class="user-avatar-chip" :class="fLoggedIn && !isLoggedIn ? 'user-avatar-chip--pro' : ''">
+            <div v-if="isLoggedIn || fHasSession" class="user-avatar-chip" :class="fHasSession && !isLoggedIn ? 'user-avatar-chip--pro' : ''">
               {{ accountInitials }}
             </div>
             <!-- Guest: person icon -->
@@ -97,18 +97,22 @@ const searchQuery = ref('')
 const { isOpen: isSidebarOpen, toggle: toggleSidebar } = useSidebar()
 const { count: cartCount } = useCart()
 const { isLoggedIn, user } = useAuth()
-const { isLoggedIn: fLoggedIn, user: fUser } = useFournisseurAuth()
+const { isLoggedIn: fLoggedIn, user: fUser, token: fToken } = useFournisseurAuth()
+
+// fHasSession: token cookie présent même si le user n'est pas encore rechargé (async plugin)
+const fHasSession = computed(() => fLoggedIn.value || !!fToken.value)
 
 // Computed account info (client takes priority over fournisseur)
 const accountLink = computed(() => {
-  if (isLoggedIn.value) return '/compte/commandes'
-  if (fLoggedIn.value)  return '/fournisseur/dashboard'
+  if (isLoggedIn.value)  return '/compte/commandes'
+  if (fHasSession.value) return '/fournisseur/dashboard'
   return '/auth/login'
 })
 
 const accountLabel = computed(() => {
-  if (isLoggedIn.value) return user.value?.prenom || 'Mon compte'
-  if (fLoggedIn.value)  return fUser.value?.nom_entreprise || fUser.value?.prenom || 'Dashboard'
+  if (isLoggedIn.value)  return user.value?.prenom || 'Mon compte'
+  if (fLoggedIn.value)   return fUser.value?.nom_entreprise || fUser.value?.prenom || 'Dashboard'
+  if (fHasSession.value) return 'Dashboard'
   return 'Connexion'
 })
 
