@@ -2,19 +2,19 @@ const BASE = 'https://images.unsplash.com/photo-'
 const Q    = '?w=80&h=80&q=75&fit=crop&auto=format'
 const QS   = '?w=56&h=56&q=70&fit=crop&auto=format'
 
-/** Main category slug → Unsplash image URL */
+/** Main category slug → image URL (local when available, Unsplash fallback) */
 export const CATEGORY_IMAGES: Record<string, string> = {
-  'meubles':           `${BASE}FI4ZN6aaWQ0${Q}`,       // cozy living room sofa
-  'jardin-loisirs':    `${BASE}lbzwDclA8dk${Q}`,        // outdoor table & chairs
-  'accessoires':       `${BASE}1-VoF8mT7Aw${Q}`,        // shelf with vases & decor
-  'luminaires':        `${BASE}hF_hN4TRGas${Q}`,        // white pendant lamp
-  'textiles':          `${BASE}8qNuR1lIv_k${Q}`,        // white bed linen
-  'enfant':            `${BASE}3mtds3PygEw${Q}`,         // child's room with bookcase
-  'cuisine':           `${BASE}mhDeeOvBs9o${Q}`,        // modern kitchen with island
-  'salle-de-bain':     `${BASE}Z9MHFepWMtc${Q}`,        // bathroom sink with mirror
-  'animalerie':        `${BASE}Qb7D1xw28Co${Q}`,        // dog on sofa
-  'bricolage':         `${BASE}G5i9LQ7sPOw${Q}`,        // claw hammer & hand tools
-  'electro-entretien': `${BASE}GzLxFhvgzkw${Q}`,        // washing machine in laundry room
+  'meubles':           '/images/categories/meubles.jpg',
+  'jardin-loisirs':    '/images/categories/jardin-loisirs.jpg',
+  'accessoires':       '/images/categories/accessoires.jpg',
+  'luminaires':        '/images/categories/luminaires.jpg',
+  'textiles':          `${BASE}8qNuR1lIv_k${Q}`,
+  'enfant':            '/images/categories/enfant.jpg',
+  'cuisine':           '/images/categories/cuisine.jpg',
+  'salle-de-bain':     '/images/categories/salle-de-bain.jpg',
+  'animalerie':        `${BASE}Qb7D1xw28Co${Q}`,
+  'bricolage':         `${BASE}G5i9LQ7sPOw${Q}`,
+  'electro-entretien': '/images/categories/electro-entretien.jpg',
 }
 
 /** Subcategory slug → Unsplash image URL */
