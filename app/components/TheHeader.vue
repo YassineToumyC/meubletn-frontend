@@ -40,7 +40,7 @@
 
         <!-- Logo -->
         <NuxtLink to="/" class="logo-link">
-          <img src="/images/logo/logo-pink.svg" class="logo-img" alt="meubletn" />
+          <img src="/images/logo/Foire du11_page-0001.jpg" class="logo-img" alt="meubletn" />
         </NuxtLink>
 
         <!-- Search -->

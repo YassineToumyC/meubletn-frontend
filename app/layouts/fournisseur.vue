@@ -8,7 +8,7 @@
         <!-- Brand -->
         <div class="sidebar-brand">
           <NuxtLink to="/" class="brand-logo">
-            <img src="/images/logo/logo-blue.svg" class="logo-img" alt="meubletn" />
+            <img src="/images/logo/Foire du22_page-0001.jpg" class="logo-img" alt="meubletn" />
           </NuxtLink>
         </div>
 
