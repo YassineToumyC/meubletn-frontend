@@ -32,7 +32,7 @@
               @click="selectCategory(cat)"
             >
               <span class="cat-item-icon">
-                <img :src="getCategoryImage(cat.slug)" :alt="cat.name" class="cat-icon-img" />
+                <img :src="getCategoryImage(cat.slug)" :alt="cat.name" class="cat-icon-img" @error="onCatImgError($event, cat.name)" />
               </span>
               <span class="cat-item-label">{{ cat.name }}</span>
               <svg class="cat-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -63,7 +63,7 @@
             </button>
             <div class="sub-title-row">
               <span class="sub-cat-icon">
-                <img :src="getCategoryImage(activeCategory.slug)" :alt="activeCategory.name" class="cat-icon-img" />
+                <img :src="getCategoryImage(activeCategory.slug)" :alt="activeCategory.name" class="cat-icon-img" @error="onCatImgError($event, activeCategory.name)" />
               </span>
               <span class="col-title">{{ activeCategory.name }}</span>
             </div>
@@ -92,6 +92,7 @@
                   :src="getSubcategoryImage(sub.slug, activeCategory.slug)"
                   :alt="sub.name"
                   class="sub-item-img"
+                  @error="onSubImgError($event, activeCategory.slug, sub.name)"
                 />
                 {{ sub.name }}
               </NuxtLink>
@@ -107,11 +108,25 @@
 
 <script setup lang="ts">
 import type { NavCategory } from '~/composables/useCategories'
-import { getCategoryImage, getSubcategoryImage } from '~/composables/useCategoryIcons'
+import { CATEGORY_IMAGES, getCategoryImage, getSubcategoryImage, catAvatarSvg } from '~/composables/useCategoryIcons'
 
 const { isOpen, close } = useSidebar()
 const { categories } = useCategories()
 const activeCategory = ref<NavCategory | null>(null)
+
+function onCatImgError(e: Event, name: string) {
+  (e.target as HTMLImageElement).src = catAvatarSvg(name)
+}
+
+function onSubImgError(e: Event, parentSlug: string, name: string) {
+  const img = e.target as HTMLImageElement
+  const parentSrc = CATEGORY_IMAGES[parentSlug]
+  if (parentSrc && !img.src.endsWith(parentSrc)) {
+    img.src = parentSrc
+  } else {
+    img.src = catAvatarSvg(name)
+  }
+}
 
 function selectCategory(cat: NavCategory) {
   activeCategory.value = activeCategory.value?.slug === cat.slug ? null : cat
