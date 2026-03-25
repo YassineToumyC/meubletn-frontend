@@ -4,11 +4,18 @@
     <div v-if="isOpen" class="sidebar-backdrop" @click="close" />
   </Transition>
 
-  <!-- Drawer: expands horizontally when a sub-panel opens -->
+  <!-- Drawer -->
   <Transition name="slide">
-    <div v-if="isOpen" class="sidebar" :class="{ 'sidebar--expanded': activeCategory !== null }" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div
+      v-if="isOpen"
+      class="sidebar"
+      :class="{ 'sidebar--expanded': activeCategory !== null }"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation"
+    >
 
-      <!-- ── Left column: always visible ── -->
+      <!-- ── Left column: categories ── -->
       <div class="col col-main">
         <div class="col-head">
           <span class="col-title">Nos catégories</span>
@@ -45,16 +52,24 @@
         </div>
       </div>
 
-      <!-- ── Right column: sub-categories, slides in alongside ── -->
+      <!-- ── Right column: sub-categories ── -->
       <Transition name="sub-slide">
         <div v-if="activeCategory !== null" class="col col-sub">
+
           <div class="col-head col-head--sub">
+            <!-- Back button — mobile only -->
+            <button class="back-btn" @click="activeCategory = null" aria-label="Retour">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
             <div class="sub-title-row">
               <span class="sub-cat-icon">
                 <img :src="getCategoryImage(activeCategory.slug)" :alt="activeCategory.name" class="cat-icon-img" />
               </span>
               <span class="col-title">{{ activeCategory.name }}</span>
             </div>
+            <button class="close-btn" @click="close" aria-label="Fermer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
           </div>
 
           <NuxtLink
@@ -62,7 +77,7 @@
             class="see-all-link"
             @click="close"
           >
-            Voir tout
+            Voir tout « {{ activeCategory.name }} »
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </NuxtLink>
 
@@ -82,6 +97,7 @@
               </NuxtLink>
             </li>
           </ul>
+
         </div>
       </Transition>
 
@@ -124,7 +140,6 @@ watch(() => route.path, () => close())
   top: 0;
   left: 0;
   bottom: 0;
-  /* default width: just the main column */
   width: 272px;
   background: #ffffff;
   z-index: 2001;
@@ -134,7 +149,6 @@ watch(() => route.path, () => close())
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
   transition: width 0.26s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* expand when sub-panel is open */
 .sidebar--expanded {
   width: 520px;
   max-width: 95vw;
@@ -182,6 +196,22 @@ watch(() => route.path, () => close())
 }
 .close-btn:hover { background-color: #eeeeef; color: #2f3133; }
 
+/* Back button (hidden on desktop, shown on mobile) */
+.back-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #717678;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.back-btn:hover { background-color: #eeeeef; color: #2f3133; }
+
 /* Category list */
 .cat-list {
   list-style: none;
@@ -214,7 +244,7 @@ watch(() => route.path, () => close())
   border-left-color: #db3a1b;
   color: #db3a1b;
 }
-.cat-item--active .cat-item-icon { background-color: #ffffff; color: #db3a1b; }
+.cat-item--active .cat-item-icon { background-color: #ffffff; }
 .cat-item--active .cat-chevron { color: #db3a1b; }
 .cat-item-icon {
   display: flex;
@@ -226,7 +256,6 @@ watch(() => route.path, () => close())
   background-color: #f5f5f6;
   flex-shrink: 0;
   overflow: hidden;
-  transition: opacity 0.12s;
 }
 .cat-icon-img {
   width: 100%;
@@ -274,13 +303,15 @@ watch(() => route.path, () => close())
   overflow: hidden;
 }
 .col-head--sub {
-  border-bottom-color: #e2e4e4;
-  padding: 0 16px;
+  padding: 0 14px 0 14px;
+  gap: 8px;
 }
 .sub-title-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 .sub-cat-icon {
   display: flex;
@@ -309,6 +340,9 @@ watch(() => route.path, () => close())
   text-decoration: none;
   transition: background-color 0.15s, border-color 0.15s;
   flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .see-all-link:hover { background-color: #fef0ec; border-color: #f8c9c2; }
 
@@ -326,7 +360,7 @@ watch(() => route.path, () => close())
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 12px;
+  padding: 9px 12px;
   border-radius: 8px;
   font-size: 13px;
   color: #47494c;
@@ -343,7 +377,63 @@ watch(() => route.path, () => close())
   background: #f5f5f6;
 }
 
-/* ── Transitions ── */
+/* ── Mobile: single-column sliding behavior ── */
+@media (max-width: 639px) {
+  /* Sidebar never changes width on mobile */
+  .sidebar,
+  .sidebar--expanded {
+    width: 88vw !important;
+    max-width: 320px !important;
+    transition: none;
+  }
+
+  /* Main column takes full width */
+  .col-main {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    /* Slide out left when sub-panel is open */
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sidebar--expanded .col-main {
+    transform: translateX(-100%);
+    position: absolute;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* Sub column takes full width */
+  .col-sub {
+    width: 100%;
+    min-width: 100%;
+    background: #fff;
+  }
+
+  /* Show back button on mobile */
+  .back-btn { display: flex; }
+
+  /* Override sub-panel slide animation: full-width slide from right */
+  .sub-slide-enter-active {
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  .sub-slide-leave-active {
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  .sub-slide-enter-from {
+    transform: translateX(100%) !important;
+    opacity: 1 !important;
+  }
+  .sub-slide-leave-to {
+    transform: translateX(100%) !important;
+    opacity: 1 !important;
+  }
+  .sub-slide-enter-to,
+  .sub-slide-leave-from {
+    transform: translateX(0) !important;
+  }
+}
+
+/* ── Transitions (desktop) ── */
 .fade-enter-active, .fade-leave-active { transition: opacity 0.22s; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 
