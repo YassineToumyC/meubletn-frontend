@@ -40,7 +40,7 @@
 
         <!-- Logo -->
         <NuxtLink to="/" class="logo-link">
-          <span class="logo-text">meubletn</span>
+          <img src="/images/logo/logo-pink.svg" class="logo-img" alt="meubletn" />
         </NuxtLink>
 
         <!-- Search -->
@@ -222,15 +222,16 @@ function doSearch() {
 .logo-link {
   flex-shrink: 0;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
-.logo-text {
-  font-size: 22px;
-  font-weight: bold;
-  color: #E1004E;
-  letter-spacing: -0.5px;
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
-@media (min-width: 632px) { .logo-text { font-size: 26px; } }
-@media (min-width: 984px) { .logo-text { font-size: 30px; } }
+@media (min-width: 632px) { .logo-img { height: 42px; } }
+@media (min-width: 984px) { .logo-img { height: 48px; } }
 
 /* Search */
 .search-wrap {

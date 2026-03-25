@@ -8,9 +8,8 @@
         <!-- Brand -->
         <div class="sidebar-brand">
           <NuxtLink to="/" class="brand-logo">
-            <span class="logo-text">meuble<span class="logo-accent">tn</span></span>
+            <img src="/images/logo/logo-blue.svg" class="logo-img" alt="meubletn" />
           </NuxtLink>
-          <span class="pro-badge">PRO</span>
         </div>
 
         <!-- User card -->
@@ -218,19 +217,8 @@ async function doLogout() {
   padding: 22px 20px 18px;
   border-bottom: 1px solid #1e2128;
 }
-.brand-logo { text-decoration: none; }
-.logo-text { font-size: 22px; font-weight: 800; color: #f3f4f6; letter-spacing: -0.5px; }
-.logo-accent { color: #003888; }
-.pro-badge {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #003888;
-  background: rgba(0,56,136,0.12);
-  border: 1px solid rgba(0,56,136,0.25);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
+.brand-logo { text-decoration: none; display: flex; align-items: center; }
+.logo-img { height: 40px; width: auto; display: block; }
 
 /* User card */
 .user-card {
