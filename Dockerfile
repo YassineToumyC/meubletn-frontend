@@ -9,10 +9,11 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3002
 
 ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT=3002
+ENV NITRO_PORT=3002
 ENV NODE_ENV=production
 
 # Build at startup so NUXT_PUBLIC_* env vars are picked up
