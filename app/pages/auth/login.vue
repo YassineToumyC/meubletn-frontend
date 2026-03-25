@@ -238,8 +238,8 @@ async function handleLogin() {
 .info-box svg { flex-shrink: 0; margin-top: 1px; }
 .info-box--blue { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
 .info-box--blue svg { stroke: #1e40af; }
-.info-box--orange { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
-.info-box--orange svg { stroke: #9a3412; }
+.info-box--orange { background: #fff0f6; color: #c5003f; border: 1px solid #fecdd3; }
+.info-box--orange svg { stroke: #c5003f; }
 
 /* Form */
 .auth-form { display: flex; flex-direction: column; gap: 18px; }

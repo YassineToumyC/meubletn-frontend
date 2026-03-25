@@ -280,7 +280,7 @@ onMounted(async () => {
 }
 .stat-icon--blue   { background: #eff6ff; color: #2563eb; }
 .stat-icon--green  { background: #f0fdf4; color: #16a34a; }
-.stat-icon--amber  { background: #fffbeb; color: #d97706; }
+.stat-icon--amber  { background: #eff6ff; color: #003888; }
 .stat-icon--purple { background: #faf5ff; color: #9333ea; }
 .stat-icon--red    { background: #e8eef8; color: #003888; }
 
@@ -294,7 +294,7 @@ onMounted(async () => {
   margin-bottom: 4px;
 }
 .stat-value--green  { color: #16a34a; }
-.stat-value--amber  { color: #d97706; }
+.stat-value--amber  { color: #003888; }
 .stat-value--purple { color: #9333ea; }
 .stat-label { font-size: 12px; color: #6b7280; font-weight: 500; }
 
@@ -315,7 +315,7 @@ onMounted(async () => {
   letter-spacing: 0.3px;
 }
 .stat-pill--green  { background: #dcfce7; color: #16a34a; }
-.stat-pill--amber  { background: #fef9c3; color: #a16207; }
+.stat-pill--amber  { background: #eff6ff; color: #003888; }
 .stat-pill--purple { background: #f3e8ff; color: #9333ea; }
 
 /* Bottom grid */
@@ -478,7 +478,7 @@ onMounted(async () => {
 }
 .qa-icon--blue   { background: #eff6ff; color: #2563eb; }
 .qa-icon--purple { background: #faf5ff; color: #9333ea; }
-.qa-icon--amber  { background: #fffbeb; color: #d97706; }
+.qa-icon--amber  { background: #eff6ff; color: #003888; }
 .qa-icon--green  { background: #f0fdf4; color: #16a34a; }
 
 .qa-title { display: block; font-size: 13px; font-weight: 600; color: #111827; }

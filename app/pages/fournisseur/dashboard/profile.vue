@@ -257,7 +257,7 @@ async function savePassword() {
   flex-shrink: 0;
 }
 .card-icon--blue  { background: #eff6ff; color: #2563eb; }
-.card-icon--amber { background: #fffbeb; color: #d97706; }
+.card-icon--amber { background: #eff6ff; color: #003888; }
 .card-title { font-size: 15px; font-weight: 700; color: #111827; margin: 0 0 2px; }
 .card-sub   { font-size: 12px; color: #9ca3af; margin: 0; }
 

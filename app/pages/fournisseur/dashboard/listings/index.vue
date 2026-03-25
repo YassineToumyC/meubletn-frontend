@@ -332,7 +332,7 @@ async function doDelete() {
 }
 .condition--new      { background: #dcfce7; color: #15803d; }
 .condition--like_new { background: #dbeafe; color: #1d4ed8; }
-.condition--used     { background: #fef9c3; color: #a16207; }
+.condition--used     { background: #eff6ff; color: #003888; }
 
 .toggle-status {
   display: inline-flex; align-items: center; gap: 6px;

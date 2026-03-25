@@ -227,7 +227,7 @@ const formatDate = (d: string) =>
 .action-btn { padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background 0.15s; }
 .action-btn--edit  { background: #eff6ff; color: #2563eb; }
 .action-btn--edit:hover { background: #dbeafe; }
-.action-btn--warn  { background: #fef9c3; color: #ca8a04; }
+.action-btn--warn  { background: #eff6ff; color: #003888; }
 .action-btn--warn:hover { background: #fef08a; }
 .action-btn--green { background: #dcfce7; color: #16a34a; }
 .action-btn--green:hover { background: #bbf7d0; }

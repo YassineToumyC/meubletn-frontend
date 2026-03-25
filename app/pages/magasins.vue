@@ -67,7 +67,7 @@ const stores = [
 <style scoped>
 .info-page { background: #fff; min-height: 100vh; }
 .info-hero { padding: 48px 0; }
-.info-hero--warm { background: linear-gradient(135deg, #92400e 0%, #5a2808 100%); }
+.info-hero--warm { background: linear-gradient(135deg, #E1004E 0%, #c5003f 100%); }
 .wrap { max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 632px) { .wrap { padding: 0 24px; } }
 @media (min-width: 984px) { .wrap { padding: 0 48px; } }

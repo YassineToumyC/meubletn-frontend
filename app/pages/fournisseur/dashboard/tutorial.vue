@@ -35,7 +35,7 @@
             <li>Cliquez sur <strong>« Publier l'annonce »</strong>.</li>
           </ol>
           <div class="tip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#003888" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span><strong>Conseil :</strong> Des photos de bonne qualité, bien éclairées et sous plusieurs angles augmentent significativement les vues.</span>
           </div>
         </div>
@@ -55,7 +55,7 @@
             <li>Cliquez sur <strong>« Suppr. »</strong> pour supprimer définitivement l'annonce et ses photos.</li>
           </ol>
           <div class="tip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#003888" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span><strong>Conseil :</strong> Désactivez une annonce si l'article est temporairement indisponible, plutôt que de la supprimer.</span>
           </div>
         </div>
@@ -78,7 +78,7 @@
             <li>Vous pouvez <strong>désactiver</strong> un agent pour lui retirer l'accès sans supprimer son compte.</li>
           </ol>
           <div class="tip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#003888" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span><strong>Conseil :</strong> Chaque annonce créée par un agent reste liée à votre compte fournisseur et apparaît dans votre liste.</span>
           </div>
         </div>
@@ -167,7 +167,7 @@ const { isFournisseur } = useFournisseurAuth()
   display: flex; align-items: flex-start; gap: 10px;
   padding: 14px 18px; border-radius: 10px; font-size: 14px; line-height: 1.5;
 }
-.role-notice--owner { background: #fef9c3; color: #92400e; border: 1px solid #fde68a; }
+.role-notice--owner { background: #eff6ff; color: #003888; border: 1px solid #bfdbfe; }
 .role-notice--agent { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
 .role-notice svg { flex-shrink: 0; margin-top: 2px; }
 
@@ -201,10 +201,10 @@ const { isFournisseur } = useFournisseurAuth()
 /* Tip box */
 .tip {
   display: flex; align-items: flex-start; gap: 8px;
-  background: #fffbeb; border: 1px solid #fde68a;
+  background: #eff6ff; border: 1px solid #bfdbfe;
   border-radius: 8px; padding: 10px 14px; margin-top: 4px;
 }
-.tip span { font-size: 13px; color: #92400e; line-height: 1.5; }
+.tip span { font-size: 13px; color: #003888; line-height: 1.5; }
 .tip svg { flex-shrink: 0; margin-top: 2px; }
 
 /* Best practices */

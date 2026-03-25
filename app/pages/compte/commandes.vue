@@ -145,7 +145,7 @@ const orders = [
 .order-status { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
 .status--delivered { background: #d1fae5; color: #065f46; }
 .status--shipping { background: #dbeafe; color: #1e40af; }
-.status--processing { background: #fef3c7; color: #92400e; }
+.status--processing { background: #fff0f6; color: #E1004E; }
 
 .order-items { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
 .order-item { display: flex; align-items: center; gap: 12px; }

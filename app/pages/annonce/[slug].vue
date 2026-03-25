@@ -315,7 +315,7 @@ useHead(() => ({
 }
 .condition--new      { background: #dcfce7; color: #15803d; }
 .condition--like_new { background: #dbeafe; color: #1d4ed8; }
-.condition--used     { background: #fef9c3; color: #a16207; }
+.condition--used     { background: #fff0f6; color: #E1004E; }
 
 .gallery-thumbs {
   display: flex;
