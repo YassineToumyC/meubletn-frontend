@@ -35,7 +35,7 @@
         <!-- Pro info box -->
         <div v-else class="info-box info-box--orange">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Fournisseurs et agents : utilisez vos identifiants professionnels. Le tableau de bord s'ouvrira dans un nouvel onglet.
+          Fournisseurs et agents : utilisez vos identifiants professionnels pour accéder à votre tableau de bord.
         </div>
 
         <form class="auth-form" @submit.prevent="handleLogin">
@@ -131,11 +131,6 @@ async function handleLogin() {
   loginError.value = ''
   loading.value    = true
 
-  // Open blank tab before await so browser allows it (only for pro)
-  const dashTab = (activeRole.value === 'pro' && import.meta.client)
-    ? window.open('about:blank', '_blank')
-    : null
-
   try {
     const data = await $fetch<{
       type:  'client' | 'fournisseur' | 'agent'
@@ -148,7 +143,6 @@ async function handleLogin() {
     })
 
     if (data.type === 'client') {
-      dashTab?.close()
       clientToken.value = data.token
       clientUser.value  = data.user
       const redirect = route.query.redirect as string | undefined
@@ -156,14 +150,9 @@ async function handleLogin() {
     } else {
       fToken.value = data.token
       fUser.value  = data.user
-      if (dashTab) {
-        dashTab.location.href = '/fournisseur/dashboard'
-      } else {
-        await navigateTo('/fournisseur/dashboard')
-      }
+      await navigateTo('/fournisseur/dashboard')
     }
   } catch (err: any) {
-    dashTab?.close()
     const msg = err?.data?.errors?.email?.[0] || err?.data?.message
     loginError.value = msg || 'Email ou mot de passe incorrect.'
   } finally {

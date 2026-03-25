@@ -63,14 +63,22 @@
 
         <!-- Right actions -->
         <div class="header-actions">
-          <NuxtLink to="/wishlist" class="action-btn" aria-label="Liste de souhaits">
+          <NuxtLink to="/wishlist" class="action-btn" aria-label="Favoris">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             <span class="action-label">Favoris</span>
           </NuxtLink>
-          <NuxtLink :to="isLoggedIn ? '/compte/commandes' : '/auth/login'" class="action-btn" aria-label="Mon compte">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span class="action-label">{{ isLoggedIn ? user?.prenom : 'Mon compte' }}</span>
+
+          <!-- Account btn — client, fournisseur, or guest -->
+          <NuxtLink :to="accountLink" class="action-btn account-action" :aria-label="accountLabel">
+            <!-- Logged in: colored avatar with initials -->
+            <div v-if="isLoggedIn || fLoggedIn" class="user-avatar-chip" :class="fLoggedIn && !isLoggedIn ? 'user-avatar-chip--pro' : ''">
+              {{ accountInitials }}
+            </div>
+            <!-- Guest: person icon -->
+            <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="action-label">{{ accountLabel }}</span>
           </NuxtLink>
+
           <NuxtLink to="/panier" class="action-btn cart-btn" aria-label="Panier">
             <div class="cart-icon-wrap">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -89,6 +97,31 @@ const searchQuery = ref('')
 const { isOpen: isSidebarOpen, toggle: toggleSidebar } = useSidebar()
 const { count: cartCount } = useCart()
 const { isLoggedIn, user } = useAuth()
+const { isLoggedIn: fLoggedIn, user: fUser } = useFournisseurAuth()
+
+// Computed account info (client takes priority over fournisseur)
+const accountLink = computed(() => {
+  if (isLoggedIn.value) return '/compte/commandes'
+  if (fLoggedIn.value)  return '/fournisseur/dashboard'
+  return '/auth/login'
+})
+
+const accountLabel = computed(() => {
+  if (isLoggedIn.value) return user.value?.prenom || 'Mon compte'
+  if (fLoggedIn.value)  return fUser.value?.nom_entreprise || fUser.value?.prenom || 'Dashboard'
+  return 'Connexion'
+})
+
+const accountInitials = computed(() => {
+  if (isLoggedIn.value && user.value) {
+    return `${user.value.prenom?.[0] ?? ''}${user.value.nom?.[0] ?? ''}`.toUpperCase() || '?'
+  }
+  if (fLoggedIn.value && fUser.value) {
+    const name = fUser.value.nom_entreprise || `${fUser.value.prenom ?? ''} ${fUser.value.nom ?? ''}`
+    return name.trim().split(/\s+/).slice(0, 2).map((w: string) => w[0]).join('').toUpperCase() || '?'
+  }
+  return '?'
+})
 
 function doSearch() {
   if (searchQuery.value.trim()) {
@@ -285,6 +318,37 @@ function doSearch() {
 @media (min-width: 984px) {
   .action-label { display: block; }
   .header-actions { gap: 8px; }
+}
+
+/* Account avatar chip */
+.account-action { position: relative; }
+.user-avatar-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #db3a1b, #ff6b47);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(219,58,27,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+  letter-spacing: 0.3px;
+}
+.account-action:hover .user-avatar-chip {
+  transform: scale(1.08);
+  box-shadow: 0 3px 10px rgba(219,58,27,0.45);
+}
+/* Pro fournisseur: blue avatar */
+.user-avatar-chip--pro {
+  background: linear-gradient(135deg, #2563eb, #4f8aff);
+  box-shadow: 0 2px 6px rgba(37,99,235,0.35);
+}
+.account-action:hover .user-avatar-chip--pro {
+  box-shadow: 0 3px 10px rgba(37,99,235,0.45);
 }
 
 /* Cart badge */
