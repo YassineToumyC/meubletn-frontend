@@ -364,7 +364,7 @@ useHead(() => ({ title: `${product.value?.name ?? 'Produit'} | meubletn` }))
 .prod-rating { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
 .stars { display: flex; gap: 2px; }
 .star { color: #d9dadb; font-size: 16px; }
-.star--on { color: #f5a623; }
+.star--on { color: #E1004E; }
 .rating-link { font-size: 13px; color: #1a56a0; text-decoration: none; }
 .rating-link:hover { text-decoration: underline; }
 

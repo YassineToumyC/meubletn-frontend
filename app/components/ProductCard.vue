@@ -120,7 +120,7 @@ function handleAdd() { /* legacy mock product — no cart integration */ }
 
 .pcard-stars { display: flex; align-items: center; gap: 1px; }
 .star { color: #d9dadb; font-size: 13px; }
-.star--on { color: #f5a623; }
+.star--on { color: #E1004E; }
 .pcard-rc { font-size: 11px; color: #717678; margin-left: 3px; }
 
 .pcard-pricing { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 4px; }

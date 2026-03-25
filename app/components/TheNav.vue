@@ -61,13 +61,13 @@ const { categories } = useCategories()
 }
 .nav-link:hover {
   color: #2f3133;
-  border-bottom-color: #db3a1b;
+  border-bottom-color: #E1004E;
 }
 .nav-link.router-link-active {
-  color: #db3a1b;
+  color: #E1004E;
   font-weight: bold;
-  border-bottom-color: #db3a1b;
+  border-bottom-color: #E1004E;
 }
-.nav-link--sale { color: #db3a1b; font-weight: bold; }
-.nav-link--sale:hover { color: #ab331a; border-bottom-color: #ab331a; }
+.nav-link--sale { color: #E1004E; font-weight: bold; }
+.nav-link--sale:hover { color: #c5003f; border-bottom-color: #c5003f; }
 </style>
