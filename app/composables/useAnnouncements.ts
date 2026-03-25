@@ -51,23 +51,30 @@ export const useAnnouncements = () => {
 
   async function fetchAnnouncements(params: {
     page?: number
+    per_page?: number
     category?: number | null
     subcategory?: number | null
     search?: string
     condition?: string
+    sort?: string
+    price_asc?: boolean
+    price_desc?: boolean
     force?: boolean
   } = {}) {
-    // Only skip fetching on the initial load without filters
     if (!params.force && !params.page && !params.category && !params.search && announcements.value.length > 0) return
 
     pending.value = true
     try {
       const query: Record<string, any> = {}
       if (params.page)       query.page        = params.page
+      if (params.per_page)   query.per_page    = params.per_page
       if (params.category)   query.category    = params.category
       if (params.subcategory) query.subcategory = params.subcategory
       if (params.search)     query.search      = params.search
       if (params.condition)  query.condition   = params.condition
+      if (params.sort)       query.sort        = params.sort
+      if (params.price_asc)  query.sort        = 'price_asc'
+      if (params.price_desc) query.sort        = 'price_desc'
 
       const data = await $fetch<AnnouncementsPage>(
         `${config.public.apiBase}/announcements`,
