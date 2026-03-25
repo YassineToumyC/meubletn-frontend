@@ -69,6 +69,13 @@
             </div>
           </div>
 
+          <div class="form-group form-group--remember">
+            <label class="remember-label">
+              <input v-model="form.remember" type="checkbox" class="remember-checkbox" />
+              <span>Se souvenir de moi</span>
+            </label>
+          </div>
+
           <div v-if="loginError" class="login-error">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             {{ loginError }}
@@ -121,7 +128,7 @@ const { isLoggedIn: fLoggedIn }                = useFournisseurAuth()
 if (clientLoggedIn.value) await navigateTo('/compte/commandes')
 if (fLoggedIn.value)      await navigateTo('/fournisseur/dashboard')
 
-const form       = reactive({ email: '', password: '' })
+const form       = reactive({ email: '', password: '', remember: false })
 const loginError = ref('')
 const loading    = ref(false)
 const showPwd    = ref(false)
@@ -138,7 +145,7 @@ async function handleLogin() {
       user:  any
     }>(`${config.public.apiBase}/login`, {
       method:  'POST',
-      body:    { email: form.email, password: form.password },
+      body:    { email: form.email, password: form.password, remember: form.remember },
       headers: { Accept: 'application/json' },
     })
 
@@ -244,6 +251,9 @@ async function handleLogin() {
 /* Form */
 .auth-form { display: flex; flex-direction: column; gap: 18px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group--remember { flex-direction: row; align-items: center; margin-top: -4px; }
+.remember-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #47494c; cursor: pointer; user-select: none; }
+.remember-checkbox { width: 15px; height: 15px; accent-color: #E1004E; cursor: pointer; flex-shrink: 0; }
 .form-label { font-size: 14px; font-weight: 600; color: #2f3133; }
 .form-input {
   width: 100%; height: 46px; padding: 0 14px;
