@@ -142,18 +142,18 @@ onMounted(() => {
 }
 .cs-days-num {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 38px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 300;
   color: #E1004E;
-  letter-spacing: -1.5px;
+  letter-spacing: 0;
   line-height: 1;
 }
 .cs-days-label {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 9px;
+  font-weight: 400;
   color: #9ca3af;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
