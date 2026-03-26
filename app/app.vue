@@ -97,7 +97,7 @@ onMounted(() => {
 }
 
 .cs-logo {
-  height: 120px;
+  height: 90px;
   width: auto;
   margin-bottom: 4px;
 }
