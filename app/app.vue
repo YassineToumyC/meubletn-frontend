@@ -43,7 +43,10 @@
 const showCard = ref(false)
 
 onMounted(() => {
-  setTimeout(() => { showCard.value = true }, 200)
+  setTimeout(() => {
+    showCard.value = true
+    document.body.style.overflow = 'hidden'
+  }, 200)
 })
 </script>
 
