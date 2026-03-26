@@ -74,7 +74,7 @@ onMounted(() => {
 .cs-card {
   background: #fff;
   border-radius: 24px;
-  padding: 38px 36px 32px;
+  padding: 24px 28px 20px;
   max-width: 520px;
   width: 100%;
   text-align: center;
@@ -85,11 +85,11 @@ onMounted(() => {
   gap: 16px;
 }
 @media (max-width: 520px) {
-  .cs-card { padding: 28px 20px 24px; }
+  .cs-card { padding: 20px 16px 16px; }
 }
 
 .cs-logo {
-  height: 56px;
+  height: 90px;
   width: auto;
   margin-bottom: 4px;
 }
@@ -108,13 +108,13 @@ onMounted(() => {
 }
 
 .cs-title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
   color: #111827;
   line-height: 1.3;
   margin: 0;
 }
-@media (max-width: 520px) { .cs-title { font-size: 22px; } }
+@media (max-width: 520px) { .cs-title { font-size: 17px; } }
 
 .cs-sub {
   font-size: 14px;
