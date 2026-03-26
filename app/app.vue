@@ -72,7 +72,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.035);
 }
 
 /* ── Card ── */
@@ -132,9 +132,6 @@ onMounted(() => {
 /* ── Countdown ── */
 .cs-countdown {
   margin: 4px 0;
-  background: #111827;
-  border-radius: 8px;
-  padding: 8px 20px;
 }
 .cs-days-text {
   font-family: 'Courier New', Courier, monospace;
