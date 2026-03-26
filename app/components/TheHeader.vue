@@ -61,12 +61,6 @@
           </form>
         </div>
 
-        <!-- Déposer CTA -->
-        <NuxtLink to="/deposer" class="deposit-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span>Déposer mes meubles</span>
-        </NuxtLink>
-
         <!-- Right actions -->
         <div class="header-actions">
           <NuxtLink to="/wishlist" class="action-btn" aria-label="Favoris">
@@ -298,30 +292,6 @@ function doSearch() {
   transition: background-color 0.15s;
 }
 .search-btn:hover { background-color: #c5003f; }
-
-/* Deposit CTA */
-.deposit-btn {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  background: #E1004E;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 9px 16px;
-  border-radius: 24px;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background-color 0.15s, transform 0.15s;
-}
-.deposit-btn:hover {
-  background: #c5003f;
-  transform: translateY(-1px);
-}
-@media (min-width: 632px) {
-  .deposit-btn { display: flex; }
-}
 
 /* Actions */
 .header-actions {

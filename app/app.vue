@@ -27,6 +27,11 @@
           <span class="cs-dot cs-dot--3" />
         </div>
 
+        <NuxtLink to="/deposer" class="cs-deposit-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Déposer mes meubles
+        </NuxtLink>
+
         <p class="cs-hint">En construction — merci pour votre patience</p>
 
       </div>
@@ -135,6 +140,25 @@ onMounted(() => {
 @keyframes csBounce {
   0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
   40%            { transform: scale(1.2); opacity: 1; }
+}
+
+.cs-deposit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E1004E;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 28px;
+  text-decoration: none;
+  transition: background-color 0.15s, transform 0.15s;
+  margin-top: 4px;
+}
+.cs-deposit-btn:hover {
+  background: #c5003f;
+  transform: translateY(-2px);
 }
 
 .cs-hint {
