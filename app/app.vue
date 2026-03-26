@@ -15,7 +15,7 @@
 
         <span class="cs-badge">Bientôt disponible</span>
 
-        <h1 class="cs-title">La première foire digitale du meuble en Tunisie arrive bientôt</h1>
+        <h1 class="cs-title">La première foire digitale du meuble en Tunisie</h1>
         <p class="cs-sub">
           Nous préparons une plateforme qui permettra aux marques et fournisseurs d'exposer leurs produits, gagner en visibilité et générer de nouvelles opportunités commerciales.
         </p>
@@ -72,7 +72,7 @@ onMounted(() => {
 .cs-card {
   background: #fff;
   border-radius: 24px;
-  padding: 24px 28px 20px;
+  padding: 34px 28px 30px;
   max-width: 520px;
   width: 100%;
   text-align: center;
@@ -83,7 +83,7 @@ onMounted(() => {
   gap: 16px;
 }
 @media (max-width: 520px) {
-  .cs-card { padding: 20px 16px 16px; }
+  .cs-card { padding: 30px 16px 26px; }
 }
 
 .cs-logo {
