@@ -35,13 +35,7 @@
 </template>
 
 <script setup lang="ts">
-const showCard = ref(false)
-
-onMounted(() => {
-  setTimeout(() => {
-    showCard.value = true
-  }, 300)
-})
+const showCard = ref(true)
 </script>
 
 <style>
