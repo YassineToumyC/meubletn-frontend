@@ -3,11 +3,12 @@
     <!-- Image -->
     <div class="card-img-wrap">
       <img
-        v-if="firstImage"
+        v-if="firstImage && !imgFailed"
         :src="firstImage"
         :alt="announcement.title"
         class="card-img"
         loading="lazy"
+        @error="imgFailed = true"
       />
       <div v-else class="card-img-placeholder">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5">
@@ -51,6 +52,8 @@ const { toggle, isWishlisted } = useWishlist()
 
 const wishlisted = computed(() => isWishlisted(props.announcement.id))
 function toggleWish() { toggle(props.announcement) }
+
+const imgFailed = ref(false)
 
 const firstImage = computed(() => {
   const path = props.announcement.images?.[0]
