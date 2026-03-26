@@ -1,14 +1,14 @@
 <template>
-  <!-- Contenu du site — flou seulement quand l'overlay est actif -->
-  <div :class="{ 'site-dimmed': showOverlay }">
+  <!-- Site toujours flou en arrière-plan -->
+  <div class="site-dimmed">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
 
-  <!-- ── Coming Soon overlay ── -->
+  <!-- ── Coming Soon card — apparaît après 0.3s ── -->
   <Transition name="cs">
-    <div v-if="showOverlay" class="cs-overlay">
+    <div v-if="showCard" class="cs-overlay">
       <div class="cs-card">
 
         <img src="/images/logo/Foire du11_page-0001.jpg" class="cs-logo" alt="meubletn" />
@@ -35,25 +35,24 @@
 </template>
 
 <script setup lang="ts">
-const showOverlay = ref(false)
+const showCard = ref(false)
 
 onMounted(() => {
   setTimeout(() => {
-    showOverlay.value = true
-  }, 1000)
+    showCard.value = true
+  }, 300)
 })
 </script>
 
 <style>
-/* ── Site wrapper : flou + assombrissement quand overlay actif ── */
+/* ── Site : flou immédiat dès le chargement ── */
 .site-dimmed {
   filter: blur(10px) brightness(0.55);
-  transition: filter 0.6s ease;
   pointer-events: none;
   user-select: none;
 }
 
-/* ── Overlay (fond transparent, juste pour centrer la card) ── */
+/* ── Overlay (fond semi-transparent pour renforcer le contraste) ── */
 .cs-overlay {
   position: fixed;
   inset: 0;
@@ -62,6 +61,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 24px;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* ── Card ── */
@@ -145,12 +145,12 @@ onMounted(() => {
   margin: 0;
 }
 
-/* ── Transition card (fade + légère montée) ── */
+/* ── Transition card (montée douce) ── */
 .cs-enter-active {
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 .cs-enter-from {
   opacity: 0;
-  transform: translateY(16px) scale(0.97);
+  transform: translateY(12px) scale(0.97);
 }
 </style>
