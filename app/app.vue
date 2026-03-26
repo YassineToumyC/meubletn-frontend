@@ -20,10 +20,10 @@
           Nous préparons une plateforme qui permettra aux marques et fournisseurs d'exposer leurs produits, gagner en visibilité et générer de nouvelles opportunités commerciales.
         </p>
 
-        <div class="cs-dots">
-          <span class="cs-dot cs-dot--1" />
-          <span class="cs-dot cs-dot--2" />
-          <span class="cs-dot cs-dot--3" />
+        <!-- Countdown -->
+        <div class="cs-countdown">
+          <span class="cs-days-num">- {{ daysLeft }}</span>
+          <span class="cs-days-label">jours</span>
         </div>
 
         <NuxtLink to="/deposer" class="cs-deposit-btn">
@@ -40,6 +40,14 @@
 <script setup lang="ts">
 const showCard = ref(false)
 
+const LAUNCH_DATE = new Date('2026-05-01T00:00:00')
+
+const daysLeft = computed(() => {
+  const now = new Date()
+  const diff = LAUNCH_DATE.getTime() - now.getTime()
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
+})
+
 onMounted(() => {
   setTimeout(() => {
     showCard.value = true
@@ -49,14 +57,14 @@ onMounted(() => {
 </script>
 
 <style>
-/* ── Site : flou immédiat dès le chargement ── */
+/* ── Site : flou réduit ── */
 .site-dimmed {
-  filter: blur(10px) brightness(0.55);
+  filter: blur(6px) brightness(0.55);
   pointer-events: none;
   user-select: none;
 }
 
-/* ── Overlay (fond semi-transparent pour renforcer le contraste) ── */
+/* ── Overlay ── */
 .cs-overlay {
   position: fixed;
   inset: 0;
@@ -122,25 +130,25 @@ onMounted(() => {
   max-width: 400px;
 }
 
-/* ── Animated dots ── */
-.cs-dots {
+/* ── Countdown ── */
+.cs-countdown {
   display: flex;
-  gap: 10px;
+  align-items: baseline;
+  gap: 8px;
   margin: 4px 0;
 }
-.cs-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #E1004E;
-  animation: csBounce 1.2s ease-in-out infinite;
+.cs-days-num {
+  font-size: 42px;
+  font-weight: 900;
+  color: #E1004E;
+  line-height: 1;
+  letter-spacing: -1px;
 }
-.cs-dot--1 { animation-delay: 0s; }
-.cs-dot--2 { animation-delay: 0.2s; }
-.cs-dot--3 { animation-delay: 0.4s; }
-@keyframes csBounce {
-  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
-  40%            { transform: scale(1.2); opacity: 1; }
+.cs-days-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: lowercase;
 }
 
 .cs-deposit-btn {
