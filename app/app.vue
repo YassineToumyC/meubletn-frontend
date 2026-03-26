@@ -35,7 +35,11 @@
 </template>
 
 <script setup lang="ts">
-const showCard = ref(true)
+const showCard = ref(false)
+
+onMounted(() => {
+  setTimeout(() => { showCard.value = true }, 200)
+})
 </script>
 
 <style>
