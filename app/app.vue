@@ -1,16 +1,18 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <!-- Contenu du site — flou seulement quand l'overlay est actif -->
+  <div :class="{ 'site-dimmed': showOverlay }">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 
   <!-- ── Coming Soon overlay ── -->
   <Transition name="cs">
     <div v-if="showOverlay" class="cs-overlay">
       <div class="cs-card">
-        <!-- Logo -->
+
         <img src="/images/logo/Foire du11_page-0001.jpg" class="cs-logo" alt="meubletn" />
 
-        <!-- Badge -->
         <span class="cs-badge">Bientôt disponible</span>
 
         <h1 class="cs-title">Nous préparons<br>quelque chose de grand</h1>
@@ -19,7 +21,6 @@
           Revenez nous voir très vite !
         </p>
 
-        <!-- Countdown dots -->
         <div class="cs-dots">
           <span class="cs-dot cs-dot--1" />
           <span class="cs-dot cs-dot--2" />
@@ -27,6 +28,7 @@
         </div>
 
         <p class="cs-hint">En construction — merci pour votre patience</p>
+
       </div>
     </div>
   </Transition>
@@ -36,7 +38,6 @@
 const showOverlay = ref(false)
 
 onMounted(() => {
-  // Laisser le site visible 1 seconde, puis afficher l'overlay
   setTimeout(() => {
     showOverlay.value = true
   }, 1000)
@@ -44,7 +45,15 @@ onMounted(() => {
 </script>
 
 <style>
-/* ── Overlay ── */
+/* ── Site wrapper : flou + assombrissement quand overlay actif ── */
+.site-dimmed {
+  filter: blur(10px) brightness(0.55);
+  transition: filter 0.6s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Overlay (fond transparent, juste pour centrer la card) ── */
 .cs-overlay {
   position: fixed;
   inset: 0;
@@ -53,10 +62,6 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  /* flou du site en arrière-plan */
-  backdrop-filter: blur(18px) brightness(0.55);
-  -webkit-backdrop-filter: blur(18px) brightness(0.55);
-  background: rgba(0, 0, 0, 0.35);
 }
 
 /* ── Card ── */
@@ -67,7 +72,7 @@ onMounted(() => {
   max-width: 520px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,9 +131,9 @@ onMounted(() => {
   background: #E1004E;
   animation: csBounce 1.2s ease-in-out infinite;
 }
-.cs-dot--1 { animation-delay: 0s;    opacity: 1; }
-.cs-dot--2 { animation-delay: 0.2s;  opacity: 0.7; }
-.cs-dot--3 { animation-delay: 0.4s;  opacity: 0.4; }
+.cs-dot--1 { animation-delay: 0s; }
+.cs-dot--2 { animation-delay: 0.2s; }
+.cs-dot--3 { animation-delay: 0.4s; }
 @keyframes csBounce {
   0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
   40%            { transform: scale(1.2); opacity: 1; }
@@ -140,12 +145,12 @@ onMounted(() => {
   margin: 0;
 }
 
-/* ── Transition (fade + scale) ── */
+/* ── Transition card (fade + légère montée) ── */
 .cs-enter-active {
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 .cs-enter-from {
   opacity: 0;
-  transform: scale(1.04);
+  transform: translateY(16px) scale(0.97);
 }
 </style>
