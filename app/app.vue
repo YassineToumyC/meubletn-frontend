@@ -74,7 +74,7 @@ onMounted(() => {
 .cs-card {
   background: #fff;
   border-radius: 24px;
-  padding: 52px 48px 44px;
+  padding: 38px 36px 32px;
   max-width: 520px;
   width: 100%;
   text-align: center;
@@ -85,7 +85,7 @@ onMounted(() => {
   gap: 16px;
 }
 @media (max-width: 520px) {
-  .cs-card { padding: 40px 24px 36px; }
+  .cs-card { padding: 28px 20px 24px; }
 }
 
 .cs-logo {
