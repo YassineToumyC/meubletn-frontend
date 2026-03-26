@@ -15,9 +15,9 @@
 
         <span class="cs-badge">Bientôt disponible</span>
 
-        <h1 class="cs-title">La première foire digitale du meuble en Tunisie</h1>
+        <h1 class="cs-title">La première foire digitale<br>du meuble en Tunisie</h1>
         <p class="cs-sub">
-          Nous préparons une plateforme qui permettra aux marques et fournisseurs d'exposer leurs produits, gagner en visibilité et générer de nouvelles opportunités commerciales.
+          Une plateforme pour exposer, gagner en visibilité<br>et générer de nouvelles opportunités commerciales.
         </p>
 
         <!-- Countdown -->
@@ -97,7 +97,7 @@ onMounted(() => {
 }
 
 .cs-logo {
-  height: 90px;
+  height: 120px;
   width: auto;
   margin-bottom: 4px;
 }
