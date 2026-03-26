@@ -22,7 +22,7 @@
 
         <!-- Countdown -->
         <div class="cs-countdown">
-          <span class="cs-days-num">{{ daysLeft }}<span class="cs-cursor">|</span></span>
+          <span class="cs-days-num">{{ daysLeft }}</span>
           <span class="cs-days-label">jours restants</span>
         </div>
 
@@ -155,17 +155,6 @@ onMounted(() => {
   color: #9ca3af;
   letter-spacing: 2px;
   text-transform: uppercase;
-}
-.cs-cursor {
-  display: inline-block;
-  color: #E1004E;
-  font-weight: 300;
-  animation: csTyping 1s step-end infinite;
-  margin-left: 2px;
-}
-@keyframes csTyping {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
 }
 
 .cs-deposit-btn {
