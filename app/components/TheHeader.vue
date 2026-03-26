@@ -189,7 +189,7 @@ function doSearch() {
 .header-inner {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -197,13 +197,13 @@ function doSearch() {
   gap: 12px;
 }
 @media (min-width: 632px) {
-  .header-inner { padding: 12px 24px; gap: 16px; }
+  .header-inner { padding: 8px 16px; gap: 16px; }
 }
 @media (min-width: 984px) {
-  .header-inner { padding: 12px 48px; gap: 20px; }
+  .header-inner { padding: 8px 32px; gap: 20px; }
 }
 @media (min-width: 1392px) {
-  .header-inner { padding: 12px 64px; }
+  .header-inner { padding: 8px 48px; }
 }
 
 /* Hamburger — always visible on all screen sizes */
@@ -230,12 +230,12 @@ function doSearch() {
   align-items: center;
 }
 .logo-img {
-  height: 38px;
+  height: 52px;
   width: auto;
   display: block;
 }
-@media (min-width: 632px) { .logo-img { height: 42px; } }
-@media (min-width: 984px) { .logo-img { height: 48px; } }
+@media (min-width: 632px) { .logo-img { height: 58px; } }
+@media (min-width: 984px) { .logo-img { height: 64px; } }
 
 /* Search */
 .search-wrap {
