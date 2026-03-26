@@ -22,7 +22,8 @@
 
         <!-- Countdown -->
         <div class="cs-countdown">
-          <span class="cs-days-text">-&nbsp;{{ daysLeft }}<span class="cs-cursor">|</span>&nbsp;jours</span>
+          <span class="cs-days-num">{{ daysLeft }}<span class="cs-cursor">|</span></span>
+          <span class="cs-days-label">jours restants</span>
         </div>
 
         <NuxtLink to="/deposer" class="cs-deposit-btn">
@@ -56,6 +57,8 @@ onMounted(() => {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
 /* ── Site : flou réduit ── */
 .site-dimmed {
   filter: blur(2px) brightness(0.55);
@@ -132,19 +135,33 @@ onMounted(() => {
 /* ── Countdown ── */
 .cs-countdown {
   margin: 4px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 }
-.cs-days-text {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 22px;
-  font-weight: 700;
+.cs-days-num {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 38px;
+  font-weight: 800;
   color: #E1004E;
-  letter-spacing: 1px;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+.cs-days-label {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #9ca3af;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .cs-cursor {
   display: inline-block;
   color: #E1004E;
-  animation: csTyping 0.9s step-end infinite;
-  margin: 0 1px;
+  font-weight: 300;
+  animation: csTyping 1s step-end infinite;
+  margin-left: 2px;
 }
 @keyframes csTyping {
   0%, 100% { opacity: 1; }
