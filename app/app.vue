@@ -15,10 +15,9 @@
 
         <span class="cs-badge">Bientôt disponible</span>
 
-        <h1 class="cs-title">Nous préparons<br>quelque chose de grand</h1>
+        <h1 class="cs-title">La première foire digitale du meuble en Tunisie arrive bientôt</h1>
         <p class="cs-sub">
-          Notre boutique de meubles et décoration en Tunisie sera bientôt en ligne.<br>
-          Revenez nous voir très vite !
+          Nous préparons une plateforme qui permettra aux marques et fournisseurs d'exposer leurs produits, gagner en visibilité et générer de nouvelles opportunités commerciales.
         </p>
 
         <div class="cs-dots">
@@ -28,11 +27,10 @@
         </div>
 
         <NuxtLink to="/deposer" class="cs-deposit-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Déposer mes meubles
+          En savoir plus
         </NuxtLink>
 
-        <p class="cs-hint">En construction — merci pour votre patience</p>
+        <p class="cs-hint">Une nouvelle façon de participer à une foire… sans limites.</p>
 
       </div>
     </div>
