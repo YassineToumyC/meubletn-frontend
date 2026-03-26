@@ -22,8 +22,7 @@
 
         <!-- Countdown -->
         <div class="cs-countdown">
-          <span class="cs-days-num">- {{ daysLeft }}</span>
-          <span class="cs-days-label">jours</span>
+          <span class="cs-days-text">-&nbsp;{{ daysLeft }}<span class="cs-cursor">|</span>&nbsp;jours</span>
         </div>
 
         <NuxtLink to="/deposer" class="cs-deposit-btn">
@@ -59,7 +58,7 @@ onMounted(() => {
 <style>
 /* ── Site : flou réduit ── */
 .site-dimmed {
-  filter: blur(6px) brightness(0.55);
+  filter: blur(2px) brightness(0.55);
   pointer-events: none;
   user-select: none;
 }
@@ -132,23 +131,27 @@ onMounted(() => {
 
 /* ── Countdown ── */
 .cs-countdown {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
   margin: 4px 0;
+  background: #111827;
+  border-radius: 8px;
+  padding: 8px 20px;
 }
-.cs-days-num {
-  font-size: 42px;
-  font-weight: 900;
+.cs-days-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 22px;
+  font-weight: 700;
   color: #E1004E;
-  line-height: 1;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
 }
-.cs-days-label {
-  font-size: 16px;
-  font-weight: 600;
-  color: #9ca3af;
-  text-transform: lowercase;
+.cs-cursor {
+  display: inline-block;
+  color: #E1004E;
+  animation: csTyping 0.9s step-end infinite;
+  margin: 0 1px;
+}
+@keyframes csTyping {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .cs-deposit-btn {
